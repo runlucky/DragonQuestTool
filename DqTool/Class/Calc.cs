@@ -44,7 +44,6 @@ namespace DqTool
             h1 = new Bitmap(@"img\H1.PNG");
             h2 = new Bitmap(@"img\H2.PNG");
             h3 = new Bitmap(@"img\H3.PNG");
-
         }
 
         public static bool IsHM(Bitmap bmp)
@@ -62,7 +61,6 @@ namespace DqTool
             if (IsMatch(bmp, h3)) return true;
             return false;
         }
-
 
         public static int GetNum(Bitmap num)
         {
