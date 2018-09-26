@@ -116,7 +116,58 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resouces\01_oyabun1.PNG" />
+    <Content Include="Resouces\01_oyabun2.PNG" />
+    <Content Include="Resouces\02_zairu1.PNG" />
+    <Content Include="Resouces\02_zairu2.PNG" />
+    <Content Include="Resouces\02_zairu3.PNG" />
+    <Content Include="Resouces\03_joou1.PNG" />
+    <Content Include="Resouces\03_joou2.PNG" />
+    <Content Include="Resouces\03_joou3.PNG" />
+    <Content Include="Resouces\04_taikou1.png" />
+    <Content Include="Resouces\04_taikou2.png" />
+    <Content Include="Resouces\05_genjin1.PNG" />
+    <Content Include="Resouces\05_genjinA.PNG" />
+    <Content Include="Resouces\05_genjinB.PNG" />
+    <Content Include="Resouces\05_genjinC.PNG" />
+    <Content Include="Resouces\06_kandata1.PNG" />
+    <Content Include="Resouces\06_kandata2.PNG" />
+    <Content Include="Resouces\06_kandata3.PNG" />
+    <Content Include="Resouces\07_oku1.PNG" />
+    <Content Include="Resouces\07_oku2.PNG" />
+    <Content Include="Resouces\08_kimera1.PNG" />
+    <Content Include="Resouces\08_kimera2.PNG" />
+    <Content Include="Resouces\08_kimera3.PNG" />
+    <Content Include="Resouces\09_jami1.PNG" />
+    <Content Include="Resouces\09_jami2.PNG" />
+    <Content Include="Resouces\09_jami3.PNG" />
+    <Content Include="Resouces\10_kobun1.PNG" />
+    <Content Include="Resouces\10_kobun2.PNG" />
+    <Content Include="Resouces\11_gonzu1.PNG" />
+    <Content Include="Resouces\11_gonzu2.PNG" />
+    <Content Include="Resouces\12_gema1.PNG" />
+    <Content Include="Resouces\12_gema2.PNG" />
+    <Content Include="Resouces\13_ramada1.PNG" />
+    <Content Include="Resouces\13_ramada2.PNG" />
+    <Content Include="Resouces\14_iburu1.PNG" />
+    <Content Include="Resouces\14_iburu2.PNG" />
+    <Content Include="Resouces\15_buon1.PNG" />
+    <Content Include="Resouces\15_buon2.PNG" />
+    <Content Include="Resouces\16_hell1.PNG" />
+    <Content Include="Resouces\16_hellA.PNG" />
+    <Content Include="Resouces\16_hellB.PNG" />
+    <Content Include="Resouces\17_mirudo1a.png" />
+    <Content Include="Resouces\17_mirudo1b.png" />
+    <Content Include="Resouces\17_mirudo2.PNG" />
+    <Content Include="Resouces\17_mirudo3.PNG" />
+    <Content Include="Resouces\H1.PNG" />
+    <Content Include="Resouces\H2.PNG" />
+    <Content Include="Resouces\H3.PNG" />
+    <Content Include="Resouces\HM1.png" />
+    <Content Include="Resouces\HM2.png" />
+    <Content Include="Resouces\HM3.png" />
     <Content Include="icon.ico" />
+    <Content Include="Resouces\number.bmp" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -130,6 +181,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
