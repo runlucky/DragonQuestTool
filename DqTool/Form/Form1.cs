@@ -11,6 +11,8 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 
+using DqLibrary;
+
 namespace DqTool
 {
     public partial class Form1 : Form
@@ -66,10 +68,10 @@ namespace DqTool
 
             button.Text = "計測終了";
 
-            pos.Damage   = new Point(Decimal.ToInt32(scanPosX.Value), Decimal.ToInt32(scanPosY.Value));
-            pos.Heal     = new Point(pos.Damage.X         , pos.Damage.Y - 32);
-            pos.AutoHeal = new Point(pos.Damage.X         , pos.Damage.Y - 16 * 18);
-            pos.Name     = new Point(pos.Damage.X + 16 * 9, pos.Damage.Y - 16 * 3);
+            pos.Damage = new Point(Decimal.ToInt32(scanPosX.Value), Decimal.ToInt32(scanPosY.Value));
+            pos.Heal = new Point(pos.Damage.X, pos.Damage.Y - 32);
+            pos.AutoHeal = new Point(pos.Damage.X, pos.Damage.Y - 16 * 18);
+            pos.Name = new Point(pos.Damage.X + 16 * 9, pos.Damage.Y - 16 * 3);
             pos.NameSize = new Size(128, 32);
         }
 
@@ -78,7 +80,7 @@ namespace DqTool
             var sw = new System.Diagnostics.Stopwatch();
             sw.Start();
 
-            for (;;)
+            for (; ; )
             {
                 sw.Restart();
 
@@ -193,7 +195,7 @@ namespace DqTool
             var name = Calc.Scan(new Rectangle(pos.Name, pos.NameSize));
             foreach (var v in Monster.monsterData)
             {
-                if(Calc.IsMatch(name, v.Value.nameBmp)) return v.Key;
+                if (Calc.IsMatch(name, v.Value.nameBmp)) return v.Key;
             }
             name = Calc.Scan(new Rectangle(pos.Name.X + 32, pos.Name.Y - 16 * 8, 64, 32));
             if (Calc.IsMatch(name, Monster.monsterData[MonsterName.Mirudo1].nameBmp)) return MonsterName.Mirudo1;
@@ -228,7 +230,7 @@ namespace DqTool
             public Point Name { get; set; }
             public Point Heal { get; set; }
             public Point AutoHeal { get; set; }
-            public Size  NameSize { get; set; }
+            public Size NameSize { get; set; }
         }
     }
 }
