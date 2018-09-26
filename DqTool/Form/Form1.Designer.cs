@@ -150,7 +150,8 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.ImageLocation = "img\\01_oyabun2.PNG";
+            this.pictureBox2.Image = global::DqTool.Properties.Resources._01_oyabun2;
+            this.pictureBox2.ImageLocation = "";
             this.pictureBox2.Location = new System.Drawing.Point(4, 124);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(144, 32);

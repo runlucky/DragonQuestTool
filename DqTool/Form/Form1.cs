@@ -134,7 +134,6 @@ namespace DqTool
             {
                 mst.Add(new Monster(MonsterName.BattlerB));
             }
-
         }
 
         /// <summary>
@@ -183,7 +182,6 @@ namespace DqTool
         {
             mst.Where(x => x.autoheal != 0).
                 ForEach((x, n) => x.AutoHeal(pos.AutoHeal));
-
         }
 
         /// <summary>
