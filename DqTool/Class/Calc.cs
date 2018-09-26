@@ -20,30 +20,23 @@ namespace DqTool
         /// </summary>
         private static Bitmap[] nums = new Bitmap[10];
 
-        private static Bitmap hm1;
-        private static Bitmap hm2;
-        private static Bitmap hm3;
-        private static Bitmap h1;
-        private static Bitmap h2;
-        private static Bitmap h3;
+        private static readonly Bitmap hm1 = Properties.Resources.HM1;
+        private static readonly Bitmap hm2 = Properties.Resources.HM2;
+        private static readonly Bitmap hm3 = Properties.Resources.HM3;
+        private static readonly Bitmap h1 = Properties.Resources.H1;
+        private static readonly Bitmap h2 = Properties.Resources.H2;
+        private static readonly Bitmap h3 = Properties.Resources.H3;
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
         static Calc()
         {
-            var bmp = new Bitmap(@"img\number.bmp");
+            var bmp = Properties.Resources.number;
             for (int i = 0; i < 10; i++)
             {
                 nums[i] = bmp.Clone(new Rectangle(i * 16, 0, 16, 16), bmp.PixelFormat);
             }
-
-            hm1 = new Bitmap(@"img\HM1.PNG");
-            hm2 = new Bitmap(@"img\HM2.PNG");
-            hm3 = new Bitmap(@"img\HM3.PNG");
-            h1 = new Bitmap(@"img\H1.PNG");
-            h2 = new Bitmap(@"img\H2.PNG");
-            h3 = new Bitmap(@"img\H3.PNG");
         }
 
         public static bool IsHM(Bitmap bmp)
