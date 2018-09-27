@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-
+using DqLibrary;
 
 namespace DqTool
 {
@@ -16,6 +16,7 @@ namespace DqTool
     {
         private int mhp;
         private FormType formType;
+
         public FormHp(int mh, FormType ft = FormType.Center)
         {
             InitializeComponent();
@@ -34,7 +35,6 @@ namespace DqTool
 
         public void SetHp(int h)
         {
-
             labelHp.Text = h.ToString();
             var per = (int)((1.0 * h / mhp) * 100);
             if (per < 25) ProgressRed();
@@ -49,9 +49,11 @@ namespace DqTool
                 case FormType.Center:
                     Location = Properties.Settings.Default.HpPos;
                     break;
+
                 case FormType.Left:
                     Location = Properties.Settings.Default.HpLPos;
                     break;
+
                 case FormType.Right:
                     Location = Properties.Settings.Default.HpRPos;
                     break;
@@ -103,9 +105,11 @@ namespace DqTool
                 case FormType.Center:
                     Properties.Settings.Default.HpPos = Location;
                     break;
+
                 case FormType.Left:
                     Properties.Settings.Default.HpLPos = Location;
                     break;
+
                 case FormType.Right:
                     Properties.Settings.Default.HpRPos = Location;
                     break;
@@ -120,15 +124,19 @@ namespace DqTool
                 case Keys.Left:
                     Left = Left - 1;
                     break;
+
                 case Keys.Right:
                     Left = Left + 1;
                     break;
+
                 case Keys.Up:
                     Top = Top - 1;
                     break;
+
                 case Keys.Down:
                     Top = Top + 1;
                     break;
+
                 default:
                     break;
             }

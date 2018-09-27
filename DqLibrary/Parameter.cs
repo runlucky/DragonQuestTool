@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DqTool
+namespace DqLibrary
 {
     public enum MonsterName
     {
@@ -38,5 +38,4 @@ namespace DqTool
         Left,
         Right
     }
-
 }

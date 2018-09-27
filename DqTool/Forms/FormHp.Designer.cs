@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.labelHp = new System.Windows.Forms.Label();
-            this.progress = new ProgressBarEx();
+            this.progress = new ProgressBarExtensions();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -93,7 +93,7 @@
         #endregion
 
         private System.Windows.Forms.Label labelHp;
-        private ProgressBarEx progress;
+        private ProgressBarExtensions progress;
         private System.Windows.Forms.Panel panel1;
     }
 }

@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 
+using DqLibrary.Extensions;
 using DqLibrary;
 
 namespace DqTool

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Permissions;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace DqLibrary
+namespace DqLibrary.Extensions
 {
-    public static class Parse
+    public static class StringExtensions
     {
         /// <summary>
         /// int型に変換して返します
@@ -23,16 +20,6 @@ namespace DqLibrary
                 return r;
             }
             return defaultValue;
-        }
-    }
-
-    public static class EnumerableExtentions
-    {
-        public static void ForEach<T>(this IEnumerable<T> source, Action<T, int> action)
-        {
-            int index = 0;
-            foreach (var x in source)
-                action(x, index++);
         }
     }
 }

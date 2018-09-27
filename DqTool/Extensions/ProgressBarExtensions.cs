@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace DqTool
 {
-    public class ProgressBarEx : ProgressBar
+    public class ProgressBarExtensions : ProgressBar
     {
         private int PBS_SMOOTHREVERSE = 0x0010;
 
