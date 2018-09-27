@@ -18,7 +18,7 @@ namespace DqTool
         /// <summary>
         /// 0-9の数値を格納
         /// </summary>
-        private static Bitmap[] nums = new Bitmap[10];
+        private static readonly Bitmap[] nums = new Bitmap[10];
 
         private static readonly Bitmap hm1 = Properties.Resources.HM1;
         private static readonly Bitmap hm2 = Properties.Resources.HM2;

@@ -14,10 +14,10 @@ namespace DqTool
 {
     public partial class FormHp : Form
     {
-        private int mhp;
-        private FormType formType;
+        private readonly int _maxHp;
+        private readonly FormType formType;
 
-        public FormHp(int mh, FormType ft = FormType.Center)
+        public FormHp(int maxHp, FormType ft = FormType.Center)
         {
             InitializeComponent();
 
@@ -26,17 +26,15 @@ namespace DqTool
             labelHp.MouseDown += new MouseEventHandler(FormHp_MouseDown);
             labelHp.MouseMove += new MouseEventHandler(FormHp_MouseMove);
 
-            mhp = mh;
-            TransparencyKey = Color.Red;
-            labelHp.Text = mh.ToString();
-            progress.Value = 100;
+            _maxHp = maxHp;
+            labelHp.Text = maxHp.ToString();
             formType = ft;
         }
 
         public void SetHp(int h)
         {
             labelHp.Text = h.ToString();
-            var per = (int)((1.0 * h / mhp) * 100);
+            var per = (int)((1.0 * h / _maxHp) * 100);
             progress.Value = per;
         }
 

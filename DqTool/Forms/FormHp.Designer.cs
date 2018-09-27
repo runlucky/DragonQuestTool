@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.labelHp = new System.Windows.Forms.Label();
-            this.progress = new DqTool.SmoothProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.progress = new DqTool.SmoothProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,18 +46,6 @@
             this.labelHp.TabIndex = 0;
             this.labelHp.Text = "4500";
             // 
-            // progress
-            // 
-            this.progress.BackColor = System.Drawing.Color.Black;
-            this.progress.ForeColor = System.Drawing.Color.White;
-            this.progress.Location = new System.Drawing.Point(40, 0);
-            this.progress.MarqueeAnimationSpeed = 10;
-            this.progress.Name = "progress";
-            this.progress.Size = new System.Drawing.Size(100, 17);
-            this.progress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progress.TabIndex = 1;
-            this.progress.Value = 30;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
@@ -66,6 +54,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(140, 16);
             this.panel1.TabIndex = 2;
+            // 
+            // progress
+            // 
+            this.progress.BackColor = System.Drawing.Color.Black;
+            this.progress.ForeColor = System.Drawing.Color.White;
+            this.progress.Location = new System.Drawing.Point(40, 0);
+            this.progress.MarqueeAnimationSpeed = 10;
+            this.progress.Name = "progress";
+            this.progress.Size = new System.Drawing.Size(100, 16);
+            this.progress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progress.TabIndex = 1;
+            this.progress.Value = 100;
             // 
             // FormHp
             // 
@@ -80,6 +80,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FormHp";
             this.TopMost = true;
+            this.TransparencyKey = System.Drawing.Color.Red;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormHp_FormClosing);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormHp_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormHp_MouseMove);
