@@ -167,8 +167,7 @@ namespace DqTool
         /// </summary>
         private void Heal()
         {
-            mst.Where(x => x.healPoint != 0).
-                ForEach((x, n) => x.Heal(x.IsHeal(pos.Heal)));
+            foreach (var v in mst.Where(x => x.healPoint != 0)) v.Heal(v.IsHeal(pos.Heal));
         }
 
         private void EndBattle()
@@ -183,8 +182,7 @@ namespace DqTool
         /// </summary>
         private void AutoHeal()
         {
-            mst.Where(x => x.autoheal != 0).
-                ForEach((x, n) => x.AutoHeal(pos.AutoHeal));
+            foreach (var v in mst.Where(x => x.HasAutoHeal)) v.AutoHeal(pos.AutoHeal);
         }
 
         /// <summary>

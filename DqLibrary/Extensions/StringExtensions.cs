@@ -14,8 +14,7 @@ namespace DqLibrary.Extensions
         /// <returns></returns>
         public static int ToInt(this string text, int defaultValue = 0)
         {
-            int r;
-            if (int.TryParse(text, out r))
+            if (int.TryParse(text, out int r))
             {
                 return r;
             }

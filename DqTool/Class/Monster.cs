@@ -16,7 +16,8 @@ namespace DqTool
     {
         public MonsterName name { get; }
         public int healPoint { get; }
-        public int autoheal { get; }
+        private int autoheal { get; }
+        public bool HasAutoHeal => autoheal != 0;
         public FormHp formHp { get; }
 
         private int hp;
