@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DqTool</RootNamespace>
     <AssemblyName>DqTool</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>Resouces\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -67,26 +67,27 @@
   <ItemGroup>
     <Compile Include="Class\Calc.cs" />
     <Compile Include="Class\Monster.cs" />
-    <Compile Include="Class\Parameter.cs" />
-    <Compile Include="Class\Utility.cs" />
-    <Compile Include="Form\Form1.cs">
+    <Compile Include="Class\SmoothProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Form1.Designer.cs">
+    <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FormHp.cs">
+    <Compile Include="Forms\FormHp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FormHp.Designer.cs">
+    <Compile Include="Forms\FormHp.Designer.cs">
       <DependentUpon>FormHp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class\Program.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form\Form1.resx">
+    <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormHp.resx">
+    <EmbeddedResource Include="Forms\FormHp.resx">
       <DependentUpon>FormHp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -166,7 +167,7 @@
     <Content Include="Resouces\HM1.png" />
     <Content Include="Resouces\HM2.png" />
     <Content Include="Resouces\HM3.png" />
-    <Content Include="icon.ico" />
+    <Content Include="Resouces\icon.ico" />
     <Content Include="Resouces\number.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -181,7 +182,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DqLibrary\DqLibrary.csproj">
+      <Project>{fbf07772-cf92-4795-91c3-a9c59557e5fc}</Project>
+      <Name>DqLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

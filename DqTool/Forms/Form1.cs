@@ -1,0 +1,237 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using System.Security.Cryptography;
+
+using DqLibrary.Extensions;
+using DqLibrary;
+
+namespace DqTool
+{
+    public partial class Form1 : Form
+    {
+        private List<Monster> mst = new List<Monster>();
+        private bool isAnalyzing = false;
+        private bool isCose = false;
+        private ScanPos pos = new ScanPos();
+
+        public Form1()
+        {
+            InitializeComponent();
+
+            var data = Properties.Settings.Default;
+            Location = data.MainPos;
+            tbWait.Text = data.Wait;
+            scanPosX.Value = data.ScanPos.X;
+            scanPosY.Value = data.ScanPos.Y;
+
+            reScanImage();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (isAnalyzing)
+            {
+                button.Text = "計測開始";
+                isAnalyzing = false;
+                isCose = true;
+            }
+            else
+            {
+                Init();
+                Main();
+                isCose = false;
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mst.ForEach(x => x.Destroy());
+
+            Properties.Settings.Default.MainPos = Location;
+            Properties.Settings.Default.Wait = tbWait.Text;
+            Properties.Settings.Default.ScanPos = new Point((int)scanPosX.Value, (int)scanPosY.Value);
+
+            Properties.Settings.Default.Save();
+        }
+
+        private void Init()
+        {
+            isAnalyzing = true;
+
+            button.Text = "計測終了";
+
+            pos.Damage = new Point(Decimal.ToInt32(scanPosX.Value), Decimal.ToInt32(scanPosY.Value));
+            pos.Heal = new Point(pos.Damage.X, pos.Damage.Y - 32);
+            pos.AutoHeal = new Point(pos.Damage.X, pos.Damage.Y - 16 * 18);
+            pos.Name = new Point(pos.Damage.X + 16 * 9, pos.Damage.Y - 16 * 3);
+            pos.NameSize = new Size(128, 32);
+        }
+
+        private async void Main()
+        {
+            var sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
+
+            for (; ; )
+            {
+                sw.Restart();
+
+                if (isCose)
+                {
+                    EndBattle();
+                    return;
+                }
+
+                CreateMonster();
+                Damage();
+                Heal();
+                AutoHeal();
+
+                labelMs.Text = sw.ElapsedMilliseconds + "ms";
+                await Task.Delay(tbWait.Text.ToInt(100));
+            }
+        }
+
+        private int mirudoCounter = 0;
+
+        /// <summary>
+        /// モンスター名をスキャンする
+        /// スキャンできて、今のモンスターと違う場合は新しく
+        /// モンスターを生成する
+        /// </summary>
+        private void CreateMonster()
+        {
+            var name = GetName();
+            if (name == MonsterName.Unknown) return;
+            if (mst.Any(x => x.name == name)) return;
+
+            if (name == MonsterName.Mirudo1 || name == MonsterName.Mirudo2)
+            {
+                if (mirudoCounter != 0)
+                {
+                    mirudoCounter--;
+                    return;
+                }
+            }
+
+            mst.ForEach(x => x.Destroy());
+            mst.Clear();
+
+            mst.Add(new Monster(name));
+
+            if (name == MonsterName.GenjinA)
+            {
+                mst.Add(new Monster(MonsterName.GenjinB));
+                mst.Add(new Monster(MonsterName.GenjinC));
+            }
+            else if (name == MonsterName.BattlerA)
+            {
+                mst.Add(new Monster(MonsterName.BattlerB));
+            }
+        }
+
+        /// <summary>
+        /// ダメージ処理を行う
+        /// モンスターがいない場合は何もしない
+        /// </summary>
+        private void Damage()
+        {
+            foreach (var v in mst)
+            {
+                if (v.Damage(v.GetDamage(pos.Damage)))
+                {
+                    if (v.name == MonsterName.Mirudo1 || v.name == MonsterName.Mirudo2)
+                    {
+                        mirudoCounter = 25;
+                    }
+                    v.Destroy();
+                }
+            }
+
+            mst.RemoveAll(x => x.formHp == null);
+        }
+
+        /// <summary>
+        /// 回復処理を行う
+        /// モンスターがいない場合は何もしない
+        /// 回復行動を取らないモンスターの場合も何もしない
+        /// </summary>
+        private void Heal()
+        {
+            mst.Where(x => x.healPoint != 0).
+                ForEach((x, n) => x.Heal(x.IsHeal(pos.Heal)));
+        }
+
+        private void EndBattle()
+        {
+            mst.ForEach(x => x.Destroy());
+            mst.Clear();
+            isCose = false;
+        }
+
+        /// <summary>
+        /// 自動回復処理
+        /// </summary>
+        private void AutoHeal()
+        {
+            mst.Where(x => x.autoheal != 0).
+                ForEach((x, n) => x.AutoHeal(pos.AutoHeal));
+        }
+
+        /// <summary>
+        /// ミルドラースの場合はスキャン位置が違う
+        /// </summary>
+        /// <returns></returns>
+        private MonsterName GetName()
+        {
+            var name = Calc.Scan(new Rectangle(pos.Name, pos.NameSize));
+            foreach (var v in Monster.monsterData)
+            {
+                if (Calc.IsMatch(name, v.Value.nameBmp)) return v.Key;
+            }
+            name = Calc.Scan(new Rectangle(pos.Name.X + 32, pos.Name.Y - 16 * 8, 64, 32));
+            if (Calc.IsMatch(name, Monster.monsterData[MonsterName.Mirudo1].nameBmp)) return MonsterName.Mirudo1;
+            if (Calc.IsMatch(name, Monster.monsterData[MonsterName.Mirudo2].nameBmp)) return MonsterName.Mirudo2;
+
+            return MonsterName.Unknown;
+        }
+
+        private void scanPosX_ValueChanged(object sender, EventArgs e)
+        {
+            reScanImage();
+        }
+
+        private void scanPosY_ValueChanged(object sender, EventArgs e)
+        {
+            reScanImage();
+        }
+
+        private void reScanImage()
+        {
+            pictureBox1.Image = Calc.Scan(new Rectangle((int)scanPosX.Value, (int)scanPosY.Value, 144, 32));
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            reScanImage();
+        }
+
+        private class ScanPos
+        {
+            public Point Damage { get; set; }
+            public Point Name { get; set; }
+            public Point Heal { get; set; }
+            public Point AutoHeal { get; set; }
+            public Size NameSize { get; set; }
+        }
+    }
+}

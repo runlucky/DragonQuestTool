@@ -1,9 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DqTool", "DqTool\DqTool.csproj", "{281F0168-D88A-4C64-9A11-F42D2EAC8FFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DqLibrary", "DqLibrary\DqLibrary.csproj", "{FBF07772-CF92-4795-91C3-A9C59557E5FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{281F0168-D88A-4C64-9A11-F42D2EAC8FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{281F0168-D88A-4C64-9A11-F42D2EAC8FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{281F0168-D88A-4C64-9A11-F42D2EAC8FFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBF07772-CF92-4795-91C3-A9C59557E5FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF07772-CF92-4795-91C3-A9C59557E5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF07772-CF92-4795-91C3-A9C59557E5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF07772-CF92-4795-91C3-A9C59557E5FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB8552DA-B24B-4015-8C9A-6B75DDC0BCC0}
 	EndGlobalSection
 EndGlobal
