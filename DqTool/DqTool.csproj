@@ -67,7 +67,7 @@
   <ItemGroup>
     <Compile Include="Class\Calc.cs" />
     <Compile Include="Class\Monster.cs" />
-    <Compile Include="Extensions\ProgressBarExtensions.cs">
+    <Compile Include="Class\SmoothProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\Form1.cs">

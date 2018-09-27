@@ -37,8 +37,6 @@ namespace DqTool
         {
             labelHp.Text = h.ToString();
             var per = (int)((1.0 * h / mhp) * 100);
-            if (per < 25) ProgressRed();
-            else if (per < 100) ProgressYellow();
             progress.Value = per;
         }
 
@@ -78,24 +76,6 @@ namespace DqTool
                 this.Left += e.X - mousePoint.X;
                 this.Top += e.Y - mousePoint.Y;
             }
-        }
-
-        /// <summary>
-        /// プログレスバーの長さが正しく反映されないので使用禁止
-        /// </summary>
-        public void ProgressRed()
-        {
-            //SendMessage(new HandleRef(progress, progress.Handle),
-            //    PBM_SETSTATE, PBST_ERROR, IntPtr.Zero);
-        }
-
-        /// <summary>
-        /// プログレスバーの長さが正しく反映されないので使用禁止
-        /// </summary>
-        private void ProgressYellow()
-        {
-            //SendMessage(new HandleRef(progress, progress.Handle),
-            //    PBM_SETSTATE, PBST_PAUSED, IntPtr.Zero);
         }
 
         private void FormHp_FormClosing(object sender, FormClosingEventArgs e)

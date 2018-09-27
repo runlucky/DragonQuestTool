@@ -21,9 +21,9 @@ namespace DqTool
 
         private int hp;
         private readonly int mhp;
-        private Bitmap damageBmp;
-        private Bitmap healBmp;
-        private bool isDQ5;
+        private readonly Bitmap damageBmp;
+        private readonly Bitmap healBmp;
+        private readonly bool isDQ5;
         private bool canDamage;
         private bool canHeal;
         private bool canAutoHeal;
@@ -128,10 +128,6 @@ namespace DqTool
             if (hp == 0)
             {
                 return true;
-            }
-            else if (hp == 2047 && isDQ5)
-            {
-                formHp.ProgressRed();
             }
             return false;
         }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.labelHp = new System.Windows.Forms.Label();
-            this.progress = new ProgressBarExtensions();
+            this.progress = new DqTool.SmoothProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +53,7 @@
             this.progress.Location = new System.Drawing.Point(40, 0);
             this.progress.MarqueeAnimationSpeed = 10;
             this.progress.Name = "progress";
-            this.progress.Size = new System.Drawing.Size(160, 16);
+            this.progress.Size = new System.Drawing.Size(100, 17);
             this.progress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progress.TabIndex = 1;
             this.progress.Value = 30;
@@ -64,7 +64,7 @@
             this.panel1.Controls.Add(this.labelHp);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 16);
+            this.panel1.Size = new System.Drawing.Size(140, 16);
             this.panel1.TabIndex = 2;
             // 
             // FormHp
@@ -72,7 +72,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Red;
-            this.ClientSize = new System.Drawing.Size(200, 16);
+            this.ClientSize = new System.Drawing.Size(140, 16);
             this.Controls.Add(this.progress);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -93,7 +93,7 @@
         #endregion
 
         private System.Windows.Forms.Label labelHp;
-        private ProgressBarExtensions progress;
+        private SmoothProgressBar progress;
         private System.Windows.Forms.Panel panel1;
     }
 }
