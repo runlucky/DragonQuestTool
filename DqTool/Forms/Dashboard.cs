@@ -16,14 +16,14 @@ using DqLibrary;
 
 namespace DqTool
 {
-    public partial class Form1 : Form
+    public partial class Dashboard : Form
     {
         private List<Monster> mst = new List<Monster>();
         private bool isAnalyzing = false;
         private bool isCose = false;
         private ScanPos pos = new ScanPos();
 
-        public Form1()
+        public Dashboard()
         {
             InitializeComponent();
 
@@ -194,11 +194,11 @@ namespace DqTool
             var name = Calc.Scan(new Rectangle(pos.Name, pos.NameSize));
             foreach (var v in Monster.monsterData)
             {
-                if (Calc.IsMatch(name, v.Value.nameBmp)) return v.Key;
+                if (name.Equal(v.Value.nameBmp)) return v.Key;
             }
             name = Calc.Scan(new Rectangle(pos.Name.X + 32, pos.Name.Y - 16 * 8, 64, 32));
-            if (Calc.IsMatch(name, Monster.monsterData[MonsterName.Mirudo1].nameBmp)) return MonsterName.Mirudo1;
-            if (Calc.IsMatch(name, Monster.monsterData[MonsterName.Mirudo2].nameBmp)) return MonsterName.Mirudo2;
+            if (name.Equal(Monster.monsterData[MonsterName.Mirudo1].nameBmp)) return MonsterName.Mirudo1;
+            if (name.Equal(Monster.monsterData[MonsterName.Mirudo2].nameBmp)) return MonsterName.Mirudo2;
 
             return MonsterName.Unknown;
         }

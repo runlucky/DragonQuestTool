@@ -8,6 +8,8 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
+using DqLibrary.Extensions;
+
 namespace DqTool
 {
     /// <summary>
@@ -41,17 +43,17 @@ namespace DqTool
 
         public static bool IsHM(Bitmap bmp)
         {
-            if (IsMatch(bmp, hm1)) return true;
-            if (IsMatch(bmp, hm2)) return true;
-            if (IsMatch(bmp, hm3)) return true;
+            if (bmp.Equal(hm1)) return true;
+            if (bmp.Equal(hm2)) return true;
+            if (bmp.Equal(hm3)) return true;
             return false;
         }
 
         public static bool IsH(Bitmap bmp)
         {
-            if (IsMatch(bmp, h1)) return true;
-            if (IsMatch(bmp, h2)) return true;
-            if (IsMatch(bmp, h3)) return true;
+            if (bmp.Equal(h1)) return true;
+            if (bmp.Equal(h2)) return true;
+            if (bmp.Equal(h3)) return true;
             return false;
         }
 
@@ -59,40 +61,9 @@ namespace DqTool
         {
             for (int i = 0; i < 10; i++)
             {
-                if (IsMatch(num, nums[i])) return i;
+                if (num.Equal(nums[i])) return i;
             }
             return -1;
-        }
-
-        public static bool IsMatch(Bitmap bmp1, Bitmap bmp2)
-        {
-            if (bmp1.Width != bmp2.Width) return false;
-            if (bmp1.Height != bmp2.Height) return false;
-
-            var bd1 = bmp1.LockBits(new Rectangle(0, 0, bmp1.Width, bmp1.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
-            var bd2 = bmp2.LockBits(new Rectangle(0, 0, bmp2.Width, bmp2.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
-
-            if (bd1.Stride != bd2.Stride)
-            {
-                bmp1.UnlockBits(bd1);
-                bmp2.UnlockBits(bd2);
-                return false;
-            }
-
-            int bsize = bd1.Stride * bmp1.Height;
-            var bytes1 = new byte[bsize];
-            var bytes2 = new byte[bsize];
-            Marshal.Copy(bd1.Scan0, bytes1, 0, bsize);
-            Marshal.Copy(bd2.Scan0, bytes2, 0, bsize);
-
-            bmp1.UnlockBits(bd1);
-            bmp2.UnlockBits(bd2);
-
-            var md5 = new MD5CryptoServiceProvider();
-            byte[] hash1 = md5.ComputeHash(bytes1);
-            byte[] hash2 = md5.ComputeHash(bytes2);
-
-            return hash1.SequenceEqual(hash2);
         }
 
         /// <summary>
