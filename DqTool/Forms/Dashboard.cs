@@ -194,11 +194,11 @@ namespace DqTool
             var name = Calc.Scan(new Rectangle(pos.Name, pos.NameSize));
             foreach (var v in Monster.monsterData)
             {
-                if (Calc.IsMatch(name, v.Value.nameBmp)) return v.Key;
+                if (name.Equal(v.Value.nameBmp)) return v.Key;
             }
             name = Calc.Scan(new Rectangle(pos.Name.X + 32, pos.Name.Y - 16 * 8, 64, 32));
-            if (Calc.IsMatch(name, Monster.monsterData[MonsterName.Mirudo1].nameBmp)) return MonsterName.Mirudo1;
-            if (Calc.IsMatch(name, Monster.monsterData[MonsterName.Mirudo2].nameBmp)) return MonsterName.Mirudo2;
+            if (name.Equal(Monster.monsterData[MonsterName.Mirudo1].nameBmp)) return MonsterName.Mirudo1;
+            if (name.Equal(Monster.monsterData[MonsterName.Mirudo2].nameBmp)) return MonsterName.Mirudo2;
 
             return MonsterName.Unknown;
         }

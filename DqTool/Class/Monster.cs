@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using DqLibrary.Extensions;
 
 namespace DqTool
 {
@@ -186,11 +187,11 @@ namespace DqTool
 
             rect.Location = new Point(0, 0);
             rect.Height -= 32;
-            if (!Calc.IsMatch(damageBmp, monsterName.Clone(rect, monsterName.PixelFormat)))
+            if (!damageBmp.Equal(monsterName.Clone(rect, monsterName.PixelFormat)))
             {
                 scanPos.Y += 32;
                 rect.Y += 32;
-                if (!Calc.IsMatch(damageBmp, monsterName.Clone(rect, monsterName.PixelFormat))) return -1;
+                if (!damageBmp.Equal(monsterName.Clone(rect, monsterName.PixelFormat))) return -1;
             }
 
             scanPos.X += damageBmp.Width + 16;
@@ -220,7 +221,7 @@ namespace DqTool
         /// <returns></returns>
         public bool IsHeal(Point scanPos)
         {
-            return Calc.IsMatch(healBmp, Calc.Scan(new Rectangle(scanPos, healBmp.Size)));
+            return healBmp.Equal(Calc.Scan(new Rectangle(scanPos, healBmp.Size)));
         }
 
         public class MonsterData
