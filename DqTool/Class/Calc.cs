@@ -41,7 +41,7 @@ namespace DqTool
             }
         }
 
-        public static bool IsHM(Bitmap bmp)
+        public static bool IsCommandPhase(Bitmap bmp)
         {
             if (bmp.Equal(hm1)) return true;
             if (bmp.Equal(hm2)) return true;
@@ -49,7 +49,7 @@ namespace DqTool
             return false;
         }
 
-        public static bool IsH(Bitmap bmp)
+        public static bool IsBattlePhase(Bitmap bmp)
         {
             if (bmp.Equal(h1)) return true;
             if (bmp.Equal(h2)) return true;
@@ -57,7 +57,7 @@ namespace DqTool
             return false;
         }
 
-        public static int GetNum(Bitmap num)
+        public static int ToInt(Bitmap num)
         {
             for (int i = 0; i < 10; i++)
             {

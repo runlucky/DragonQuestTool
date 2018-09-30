@@ -155,8 +155,8 @@ namespace DqTool
         /// </summary>
         public void AutoHeal(Point scanPos)
         {
-            var isHm = Calc.IsHM(new Rectangle(scanPos, new Size(16, 48)).ToBitmap());
-            var isH = Calc.IsH(new Rectangle(scanPos, new Size(16, 16)).ToBitmap());
+            var isHm = Calc.IsCommandPhase(new Rectangle(scanPos, new Size(16, 48)).ToBitmap());
+            var isH = Calc.IsBattlePhase(new Rectangle(scanPos, new Size(16, 16)).ToBitmap());
 
             if (isHm)
             {
@@ -199,13 +199,13 @@ namespace DqTool
             var numBmp = new Rectangle(scanPos, new Size(16 * 4, 16)).ToBitmap();
             var scanSize = new Rectangle(0, 0, 16, 16);
 
-            var num = Calc.GetNum(numBmp.Clone(scanSize, numBmp.PixelFormat));
+            var num = Calc.ToInt(numBmp.Clone(scanSize, numBmp.PixelFormat));
             if (num == -1) return num;
 
             for (int i = 0; i < 3; i++)
             {
                 scanSize.X += 16;
-                var tempNum = Calc.GetNum(numBmp.Clone(scanSize, numBmp.PixelFormat));
+                var tempNum = Calc.ToInt(numBmp.Clone(scanSize, numBmp.PixelFormat));
                 if (tempNum == -1) return num;
                 num *= 10;
                 num += tempNum;
