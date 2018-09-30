@@ -81,7 +81,7 @@ namespace DqTool
             var sw = new System.Diagnostics.Stopwatch();
             sw.Start();
 
-            for (; ; )
+            while (true)
             {
                 sw.Restart();
 
@@ -191,12 +191,12 @@ namespace DqTool
         /// <returns></returns>
         private MonsterName GetName()
         {
-            var name = Calc.Scan(new Rectangle(pos.Name, pos.NameSize));
+            var name = new Rectangle(pos.Name, pos.NameSize).ToBitmap();
             foreach (var v in Monster.monsterData)
             {
                 if (name.Equal(v.Value.nameBmp)) return v.Key;
             }
-            name = Calc.Scan(new Rectangle(pos.Name.X + 32, pos.Name.Y - 16 * 8, 64, 32));
+            name = new Rectangle(pos.Name.X + 32, pos.Name.Y - 16 * 8, 64, 32).ToBitmap();
             if (name.Equal(Monster.monsterData[MonsterName.Mirudo1].nameBmp)) return MonsterName.Mirudo1;
             if (name.Equal(Monster.monsterData[MonsterName.Mirudo2].nameBmp)) return MonsterName.Mirudo2;
 
@@ -215,7 +215,7 @@ namespace DqTool
 
         private void reScanImage()
         {
-            pictureBox1.Image = Calc.Scan(new Rectangle((int)scanPosX.Value, (int)scanPosY.Value, 144, 32));
+            pictureBox1.Image = new Rectangle((int)scanPosX.Value, (int)scanPosY.Value, 144, 32).ToBitmap();
         }
 
         private void button1_Click_1(object sender, EventArgs e)

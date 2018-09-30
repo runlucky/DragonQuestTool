@@ -155,8 +155,8 @@ namespace DqTool
         /// </summary>
         public void AutoHeal(Point scanPos)
         {
-            var isHm = Calc.IsHM(Calc.Scan(new Rectangle(scanPos, new Size(16, 48))));
-            var isH = Calc.IsH(Calc.Scan(new Rectangle(scanPos, new Size(16, 16))));
+            var isHm = Calc.IsHM(new Rectangle(scanPos, new Size(16, 48)).ToBitmap());
+            var isH = Calc.IsH(new Rectangle(scanPos, new Size(16, 16)).ToBitmap());
 
             if (isHm)
             {
@@ -170,7 +170,6 @@ namespace DqTool
             if (isH)
             {
                 canAutoHeal = true;
-                return;
             }
         }
 
@@ -183,7 +182,7 @@ namespace DqTool
         public int GetDamage(Point scanPos)
         {
             var rect = new Rectangle(scanPos, new Size(damageBmp.Width, damageBmp.Height + 32));
-            var monsterName = Calc.Scan(rect);
+            var monsterName = rect.ToBitmap();
 
             rect.Location = new Point(0, 0);
             rect.Height -= 32;
@@ -197,7 +196,7 @@ namespace DqTool
             scanPos.X += damageBmp.Width + 16;
             scanPos.Y += 16;
 
-            var numBmp = Calc.Scan(new Rectangle(scanPos, new Size(16 * 4, 16)));
+            var numBmp = new Rectangle(scanPos, new Size(16 * 4, 16)).ToBitmap();
             var scanSize = new Rectangle(0, 0, 16, 16);
 
             var num = Calc.GetNum(numBmp.Clone(scanSize, numBmp.PixelFormat));
@@ -221,7 +220,7 @@ namespace DqTool
         /// <returns></returns>
         public bool IsHeal(Point scanPos)
         {
-            return healBmp.Equal(Calc.Scan(new Rectangle(scanPos, healBmp.Size)));
+            return healBmp.Equal(new Rectangle(scanPos, healBmp.Size).ToBitmap());
         }
 
         public class MonsterData

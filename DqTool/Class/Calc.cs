@@ -65,24 +65,5 @@ namespace DqTool
             }
             return -1;
         }
-
-        /// <summary>
-        /// 指定した矩形のキャプチャ画像を返す
-        /// </summary>
-        /// <param name="r"></param>
-        /// <returns></returns>
-        public static Bitmap Scan(Rectangle r)
-        {
-            var scanImage = new Bitmap(r.Width, r.Height);
-            var g = Graphics.FromImage(scanImage);
-            g.CopyFromScreen(
-                new Point(r.X, r.Y),
-                new Point(0, 0),
-                scanImage.Size
-            );
-            g.Dispose();
-
-            return scanImage;
-        }
     }
 }
