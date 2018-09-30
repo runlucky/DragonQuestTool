@@ -1,6 +1,6 @@
 ﻿namespace DqTool
 {
-    partial class FormHp
+    partial class HpGauge
     {
         /// <summary>
         /// Required designer variable.

@@ -67,28 +67,28 @@
   <ItemGroup>
     <Compile Include="Class\Calc.cs" />
     <Compile Include="Class\Monster.cs" />
-    <Compile Include="Class\SmoothProgressBar.cs">
+    <Compile Include="Forms\SmoothProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\Form1.cs">
+    <Compile Include="Forms\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormHp.cs">
+    <Compile Include="Forms\HpGauge.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormHp.Designer.cs">
-      <DependentUpon>FormHp.cs</DependentUpon>
+    <Compile Include="Forms\HpGauge.Designer.cs">
+      <DependentUpon>HpGauge.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormHp.resx">
-      <DependentUpon>FormHp.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\HpGauge.resx">
+      <DependentUpon>HpGauge.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -16,14 +16,14 @@ using DqLibrary;
 
 namespace DqTool
 {
-    public partial class Form1 : Form
+    public partial class Dashboard : Form
     {
         private List<Monster> mst = new List<Monster>();
         private bool isAnalyzing = false;
         private bool isCose = false;
         private ScanPos pos = new ScanPos();
 
-        public Form1()
+        public Dashboard()
         {
             InitializeComponent();
 

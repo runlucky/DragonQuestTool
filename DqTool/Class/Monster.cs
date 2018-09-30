@@ -18,7 +18,7 @@ namespace DqTool
         public int healPoint { get; }
         private int autoheal { get; }
         public bool HasAutoHeal => autoheal != 0;
-        public FormHp formHp { get; }
+        public HpGauge formHp { get; }
 
         private int hp;
         private readonly int mhp;
@@ -77,7 +77,7 @@ namespace DqTool
             canHeal = true;
             canAutoHeal = true;
 
-            formHp = new FormHp(mhp, GetFormType(n));
+            formHp = new HpGauge(mhp, GetFormType(n));
             formHp.ReLocation();
             formHp.Show();
         }

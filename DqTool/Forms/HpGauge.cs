@@ -12,12 +12,12 @@ using DqLibrary;
 
 namespace DqTool
 {
-    public partial class FormHp : Form
+    public partial class HpGauge : Form
     {
         private readonly int _maxHp;
         private readonly FormType formType;
 
-        public FormHp(int maxHp, FormType ft = FormType.Center)
+        public HpGauge(int maxHp, FormType ft = FormType.Center)
         {
             InitializeComponent();
 
