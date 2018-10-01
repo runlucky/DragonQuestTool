@@ -157,21 +157,18 @@ namespace DqTool
         /// </summary>
         public void AutoHeal(Point scanPos)
         {
-            var isHm = Calc.IsCommandPhase(new Rectangle(scanPos, new Size(16, 48)).ToBitmap());
-            var isH = Calc.IsBattlePhase(new Rectangle(scanPos, new Size(16, 16)).ToBitmap());
-
-            if (isHm)
+            switch (Calc.GetPhase(new Rectangle(scanPos, new Size(16, 48)).ToBitmap()))
             {
-                if (!canAutoHeal) return;
-                hp = Math.Min(hp + autoheal, mhp);
-                canAutoHeal = false;
-                formHp.SetHp(hp);
-                return;
-            }
+                case Phase.Battle:
+                    canAutoHeal = true;
+                    break;
 
-            if (isH)
-            {
-                canAutoHeal = true;
+                case Phase.Command:
+                    if (!canAutoHeal) return;
+                    hp = Math.Min(hp + autoheal, mhp);
+                    canAutoHeal = false;
+                    formHp.SetHp(hp);
+                    break;
             }
         }
 

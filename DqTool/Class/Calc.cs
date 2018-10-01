@@ -12,6 +12,11 @@ using DqLibrary.Extensions;
 
 namespace DqTool
 {
+    public enum Phase {
+        Battle,
+        Command
+    }
+
     /// <summary>
     /// 画像処理
     /// </summary>
@@ -24,7 +29,7 @@ namespace DqTool
         private static readonly Bitmap h2 = Properties.Resources.H2;
         private static readonly Bitmap h3 = Properties.Resources.H3;
 
-        public static bool IsCommandPhase(Bitmap bmp)
+        private static bool IsCommandPhase(Bitmap bmp)
         {
             if (bmp.Equal(hm1)) return true;
             if (bmp.Equal(hm2)) return true;
@@ -32,12 +37,18 @@ namespace DqTool
             return false;
         }
 
-        public static bool IsBattlePhase(Bitmap bmp)
+        private static bool IsBattlePhase(Bitmap bmp)
         {
             if (bmp.Equal(h1)) return true;
             if (bmp.Equal(h2)) return true;
             if (bmp.Equal(h3)) return true;
             return false;
+        }
+
+        public static Phase GetPhase(Bitmap bmp) {
+            if (IsCommandPhase(bmp)) return Phase.Command;
+            if (IsBattlePhase(bmp)) return Phase.Battle;
+            throw new Exception("戦闘していない or 画像がおかしいです");
         }
     }
 }
