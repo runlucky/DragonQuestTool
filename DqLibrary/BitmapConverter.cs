@@ -12,10 +12,8 @@ using DqLibrary.Extensions;
 
 namespace DqLibrary
 {
-    /// <summary>
-    /// 画像処理
-    /// </summary>
-    public class NumberConverter
+
+    public class BitmapConverter
     {
         /// <summary>
         /// 0-9の数値を格納
@@ -25,7 +23,7 @@ namespace DqLibrary
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public NumberConverter(Bitmap numbers)
+        public BitmapConverter(Bitmap numbers)
         {
             for (int i = 0; i < 10; i++)
             {

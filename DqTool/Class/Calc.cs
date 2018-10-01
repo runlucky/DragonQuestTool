@@ -17,29 +17,12 @@ namespace DqTool
     /// </summary>
     public static class Calc
     {
-        /// <summary>
-        /// 0-9の数値を格納
-        /// </summary>
-        private static readonly Bitmap[] nums = new Bitmap[10];
-
         private static readonly Bitmap hm1 = Properties.Resources.HM1;
         private static readonly Bitmap hm2 = Properties.Resources.HM2;
         private static readonly Bitmap hm3 = Properties.Resources.HM3;
         private static readonly Bitmap h1 = Properties.Resources.H1;
         private static readonly Bitmap h2 = Properties.Resources.H2;
         private static readonly Bitmap h3 = Properties.Resources.H3;
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        static Calc()
-        {
-            var bmp = Properties.Resources.number;
-            for (int i = 0; i < 10; i++)
-            {
-                nums[i] = bmp.Clone(new Rectangle(i * 16, 0, 16, 16), bmp.PixelFormat);
-            }
-        }
 
         public static bool IsCommandPhase(Bitmap bmp)
         {
@@ -55,15 +38,6 @@ namespace DqTool
             if (bmp.Equal(h2)) return true;
             if (bmp.Equal(h3)) return true;
             return false;
-        }
-
-        public static int ToInt(Bitmap num)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                if (num.Equal(nums[i])) return i;
-            }
-            return -1;
         }
     }
 }

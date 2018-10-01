@@ -30,6 +30,8 @@ namespace DqTool
         private bool canHeal;
         private bool canAutoHeal;
 
+        private BitmapConverter Converter = new BitmapConverter(Properties.Resources.number);
+
         private enum HM
         {
             HM,
@@ -199,13 +201,13 @@ namespace DqTool
             var numBmp = new Rectangle(scanPos, new Size(16 * 4, 16)).ToBitmap();
             var scanSize = new Rectangle(0, 0, 16, 16);
 
-            var num = Calc.ToInt(numBmp.Clone(scanSize, numBmp.PixelFormat));
+            var num = Converter.ToInt(numBmp.Clone(scanSize, numBmp.PixelFormat)) ?? -1;
             if (num == -1) return num;
 
             for (int i = 0; i < 3; i++)
             {
                 scanSize.X += 16;
-                var tempNum = Calc.ToInt(numBmp.Clone(scanSize, numBmp.PixelFormat));
+                var tempNum = Converter.ToInt(numBmp.Clone(scanSize, numBmp.PixelFormat)) ?? -1;
                 if (tempNum == -1) return num;
                 num *= 10;
                 num += tempNum;

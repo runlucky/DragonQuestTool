@@ -4,7 +4,7 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DqTool", "DqTool\DqTool.csproj", "{281F0168-D88A-4C64-9A11-F42D2EAC8FFC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DqLibrary", "DqLibrary\DqLibrary.csproj", "{FBF07772-CF92-4795-91C3-A9C59557E5FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DqLibrary", "DqLibrary\DqLibrary.csproj", "{FBF07772-CF92-4795-91C3-A9C59557E5FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DqToolTests", "DqToolTests\DqToolTests.csproj", "{AA781DE5-2342-4D81-B417-7A874801F785}"
 EndProject
