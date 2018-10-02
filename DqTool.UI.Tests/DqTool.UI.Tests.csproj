@@ -65,7 +65,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DqTool\DqTool.UI.csproj">
+    <ProjectReference Include="..\DqTool.UI\DqTool.UI.csproj">
       <Project>{281F0168-D88A-4C64-9A11-F42D2EAC8FFC}</Project>
       <Name>DqTool.UI</Name>
     </ProjectReference>

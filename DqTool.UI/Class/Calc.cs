@@ -50,7 +50,7 @@ namespace DqTool.UI
         {
             if (IsCommandPhase(bmp)) return Phase.Command;
             if (IsBattlePhase(bmp)) return Phase.Battle;
-            throw new Exception("戦闘していない or 画像がおかしいです");
+            throw new MethodAccessException("戦闘していない or 画像がおかしいです");
         }
     }
 }

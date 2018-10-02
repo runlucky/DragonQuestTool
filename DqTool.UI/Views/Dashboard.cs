@@ -76,7 +76,7 @@ namespace DqTool.UI
             pos.NameSize = new Size(128, 32);
         }
 
-        private async Task Main()
+        private async void Main()
         {
             var sw = new System.Diagnostics.Stopwatch();
             sw.Start();

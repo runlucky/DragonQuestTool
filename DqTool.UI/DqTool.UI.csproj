@@ -184,7 +184,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DqLibrary\DqTool.Core.csproj">
+    <ProjectReference Include="..\DqTool.Core\DqTool.Core.csproj">
       <Project>{fbf07772-cf92-4795-91c3-a9c59557e5fc}</Project>
       <Name>DqTool.Core</Name>
     </ProjectReference>
