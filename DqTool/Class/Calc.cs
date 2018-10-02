@@ -8,11 +8,12 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
-using DqLibrary.Extensions;
+using DqTool.Core.Extensions;
 
-namespace DqTool
+namespace DqTool.UI
 {
-    public enum Phase {
+    public enum Phase
+    {
         Battle,
         Command
     }
@@ -45,7 +46,8 @@ namespace DqTool
             return false;
         }
 
-        public static Phase GetPhase(Bitmap bmp) {
+        public static Phase GetPhase(Bitmap bmp)
+        {
             if (IsCommandPhase(bmp)) return Phase.Command;
             if (IsBattlePhase(bmp)) return Phase.Battle;
             throw new Exception("戦闘していない or 画像がおかしいです");

@@ -1,25 +1,26 @@
-﻿using DqLibrary;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
-using DqLibrary.Extensions;
 
-namespace DqTool
+using DqTool.Core;
+using DqTool.Core.Extensions;
+
+namespace DqTool.UI
 {
     /// <summary>
     /// モンスターの管理
     /// </summary>
     public class Monster
     {
-        public MonsterName name { get; }
-        public int healPoint { get; }
-        private int autoheal { get; }
-        public bool HasAutoHeal => autoheal != 0;
-        public HpGauge formHp { get; }
+        public MonsterName Name { get; }
+        public int HealPoint { get; }
+        private int Autoheal { get; }
+        public bool HasAutoHeal => Autoheal != 0;
+        public HpGauge FormHp { get; }
 
         private int hp;
         private readonly int mhp;
@@ -30,7 +31,7 @@ namespace DqTool
         private bool canHeal;
         private bool canAutoHeal;
 
-        private BitmapConverter Converter = new BitmapConverter(Properties.Resources.number);
+        private readonly BitmapConverter Converter = new BitmapConverter(Properties.Resources.number);
 
         private enum HM
         {
@@ -67,22 +68,22 @@ namespace DqTool
         {
             var mdata = monsterData[n];
 
-            hp = mdata.hp;
-            mhp = mdata.hp;
-            name = n;
-            damageBmp = mdata.damageBmp;
-            healBmp = mdata.healBmp;
-            healPoint = mdata.healPoint;
-            autoheal = mdata.autoheal;
-            isDQ5 = mdata.isDq5;
+            hp = mdata.Hp;
+            mhp = mdata.Hp;
+            Name = n;
+            damageBmp = mdata.DamageBmp;
+            healBmp = mdata.HealBmp;
+            HealPoint = mdata.HealPoint;
+            Autoheal = mdata.Autoheal;
+            isDQ5 = mdata.IsDq5;
 
             canDamage = true;
             canHeal = true;
             canAutoHeal = true;
 
-            formHp = new HpGauge(mhp, GetFormType(n));
-            formHp.ReLocation();
-            formHp.Show();
+            FormHp = new HpGauge(mhp, GetFormType(n));
+            FormHp.ReLocation();
+            FormHp.Show();
         }
 
         private FormType GetFormType(MonsterName n)
@@ -105,10 +106,10 @@ namespace DqTool
 
         public void Destroy()
         {
-            if (!formHp.IsDisposed)
+            if (!FormHp.IsDisposed)
             {
-                formHp.Close();
-                formHp.Dispose();
+                FormHp.Close();
+                FormHp.Dispose();
             }
         }
 
@@ -118,7 +119,7 @@ namespace DqTool
         /// </summary>
         public bool Damage(int d)
         {
-            if (formHp.IsDisposed) return true;
+            if (FormHp.IsDisposed) return true;
             if (d == -1)
             {
                 canDamage = true;
@@ -128,7 +129,7 @@ namespace DqTool
             if (isDQ5 && hp == 2047) return false;
             hp = Math.Max(hp - d, 0);
             canDamage = false;
-            formHp.SetHp(hp);
+            FormHp.SetHp(hp);
             if (hp == 0)
             {
                 return true;
@@ -147,9 +148,9 @@ namespace DqTool
                 return;
             }
             if (!canHeal) return;
-            hp = Math.Min(hp + healPoint, mhp);
+            hp = Math.Min(hp + HealPoint, mhp);
             canHeal = false;
-            formHp.SetHp(hp);
+            FormHp.SetHp(hp);
         }
 
         /// <summary>
@@ -165,9 +166,9 @@ namespace DqTool
 
                 case Phase.Command:
                     if (!canAutoHeal) return;
-                    hp = Math.Min(hp + autoheal, mhp);
+                    hp = Math.Min(hp + Autoheal, mhp);
                     canAutoHeal = false;
-                    formHp.SetHp(hp);
+                    FormHp.SetHp(hp);
                     break;
             }
         }
@@ -224,28 +225,28 @@ namespace DqTool
 
         public class MonsterData
         {
-            public int hp { get; }
+            public int Hp { get; }
 
             /// <summary>
             /// 自動回復量
             /// </summary>
-            public int autoheal { get; }
+            public int Autoheal { get; }
 
-            public Bitmap nameBmp { get; }
-            public Bitmap damageBmp { get; }
-            public Bitmap healBmp { get; }
-            public int healPoint { get; }
-            public bool isDq5 { get; }
+            public Bitmap NameBmp { get; }
+            public Bitmap DamageBmp { get; }
+            public Bitmap HealBmp { get; }
+            public int HealPoint { get; }
+            public bool IsDq5 { get; }
 
             public MonsterData(int h, int a, Bitmap nb, Bitmap db, Bitmap hb, int ht, bool dq5)
             {
-                hp = h;
-                autoheal = a;
-                nameBmp = nb;
-                damageBmp = db;
-                healBmp = hb;
-                healPoint = ht;
-                isDq5 = dq5;
+                Hp = h;
+                Autoheal = a;
+                NameBmp = nb;
+                DamageBmp = db;
+                HealBmp = hb;
+                HealPoint = ht;
+                IsDq5 = dq5;
             }
         }
     }

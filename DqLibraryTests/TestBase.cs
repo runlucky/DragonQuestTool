@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DqLibraryTests
+namespace DqTool.Core.Tests
 {
     [TestClass]
     public abstract class TestBase

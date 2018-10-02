@@ -1,4 +1,4 @@
-﻿namespace DqTool
+﻿namespace DqTool.UI
 {
     partial class Dashboard
     {
@@ -54,7 +54,7 @@
             this.button.TabIndex = 0;
             this.button.Text = "計測開始";
             this.button.UseVisualStyleBackColor = true;
-            this.button.Click += new System.EventHandler(this.button1_Click);
+            this.button.Click += new System.EventHandler(this.Button1_Click);
             // 
             // labelMs
             // 
@@ -90,7 +90,7 @@
             0,
             0,
             0});
-            this.scanPosX.ValueChanged += new System.EventHandler(this.scanPosX_ValueChanged);
+            this.scanPosX.ValueChanged += new System.EventHandler(this.ScanPosX_ValueChanged);
             // 
             // scanPosY
             // 
@@ -108,7 +108,7 @@
             0,
             0,
             0});
-            this.scanPosY.ValueChanged += new System.EventHandler(this.scanPosY_ValueChanged);
+            this.scanPosY.ValueChanged += new System.EventHandler(this.ScanPosY_ValueChanged);
             // 
             // comboBox1
             // 
@@ -166,7 +166,7 @@
             this.button1.TabIndex = 14;
             this.button1.Text = "画像更新";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
             // 
             // Form1
             // 

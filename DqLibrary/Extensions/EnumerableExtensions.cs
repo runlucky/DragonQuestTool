@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DqLibrary.Extensions
+namespace DqTool.Core.Extensions
 {
     public static class EnumerableExtentions
     {

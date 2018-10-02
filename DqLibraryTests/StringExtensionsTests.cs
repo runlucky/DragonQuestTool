@@ -1,7 +1,7 @@
-using DqLibrary.Extensions;
+using DqTool.Core.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DqLibraryTests
+namespace DqTool.Core.Tests
 {
     [TestClass]
     public class StringExtensionsTests : TestBase

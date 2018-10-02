@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace DqLibrary.Extensions
+namespace DqTool.Core.Extensions
 {
     public static class RectangleExtensions
     {

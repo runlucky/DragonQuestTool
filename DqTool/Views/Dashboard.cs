@@ -11,10 +11,10 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 
-using DqLibrary.Extensions;
-using DqLibrary;
+using DqTool.Core.Extensions;
+using DqTool.Core;
 
-namespace DqTool
+namespace DqTool.UI
 {
     public partial class Dashboard : Form
     {
@@ -33,10 +33,10 @@ namespace DqTool
             scanPosX.Value = data.ScanPos.X;
             scanPosY.Value = data.ScanPos.Y;
 
-            reScanImage();
+            ReScanImage();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             if (isAnalyzing)
             {
@@ -76,7 +76,7 @@ namespace DqTool
             pos.NameSize = new Size(128, 32);
         }
 
-        private async void Main()
+        private async Task Main()
         {
             var sw = new System.Diagnostics.Stopwatch();
             sw.Start();
@@ -112,7 +112,7 @@ namespace DqTool
         {
             var name = GetName();
             if (name == MonsterName.Unknown) return;
-            if (mst.Any(x => x.name == name)) return;
+            if (mst.Any(x => x.Name == name)) return;
 
             if (name == MonsterName.Mirudo1 || name == MonsterName.Mirudo2)
             {
@@ -149,7 +149,7 @@ namespace DqTool
             {
                 if (v.Damage(v.GetDamage(pos.Damage)))
                 {
-                    if (v.name == MonsterName.Mirudo1 || v.name == MonsterName.Mirudo2)
+                    if (v.Name == MonsterName.Mirudo1 || v.Name == MonsterName.Mirudo2)
                     {
                         mirudoCounter = 25;
                     }
@@ -157,7 +157,7 @@ namespace DqTool
                 }
             }
 
-            mst.RemoveAll(x => x.formHp == null);
+            mst.RemoveAll(x => x.FormHp == null);
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace DqTool
         /// </summary>
         private void Heal()
         {
-            foreach (var v in mst.Where(x => x.healPoint != 0)) v.Heal(v.IsHeal(pos.Heal));
+            foreach (var v in mst.Where(x => x.HealPoint != 0)) v.Heal(v.IsHeal(pos.Heal));
         }
 
         private void EndBattle()
@@ -194,33 +194,33 @@ namespace DqTool
             var name = new Rectangle(pos.Name, pos.NameSize).ToBitmap();
             foreach (var v in Monster.monsterData)
             {
-                if (name.Equal(v.Value.nameBmp)) return v.Key;
+                if (name.Equal(v.Value.NameBmp)) return v.Key;
             }
             name = new Rectangle(pos.Name.X + 32, pos.Name.Y - 16 * 8, 64, 32).ToBitmap();
-            if (name.Equal(Monster.monsterData[MonsterName.Mirudo1].nameBmp)) return MonsterName.Mirudo1;
-            if (name.Equal(Monster.monsterData[MonsterName.Mirudo2].nameBmp)) return MonsterName.Mirudo2;
+            if (name.Equal(Monster.monsterData[MonsterName.Mirudo1].NameBmp)) return MonsterName.Mirudo1;
+            if (name.Equal(Monster.monsterData[MonsterName.Mirudo2].NameBmp)) return MonsterName.Mirudo2;
 
             return MonsterName.Unknown;
         }
 
-        private void scanPosX_ValueChanged(object sender, EventArgs e)
+        private void ScanPosX_ValueChanged(object sender, EventArgs e)
         {
-            reScanImage();
+            ReScanImage();
         }
 
-        private void scanPosY_ValueChanged(object sender, EventArgs e)
+        private void ScanPosY_ValueChanged(object sender, EventArgs e)
         {
-            reScanImage();
+            ReScanImage();
         }
 
-        private void reScanImage()
+        private void ReScanImage()
         {
             pictureBox1.Image = new Rectangle((int)scanPosX.Value, (int)scanPosY.Value, 144, 32).ToBitmap();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void Button1_Click_1(object sender, EventArgs e)
         {
-            reScanImage();
+            ReScanImage();
         }
 
         private class ScanPos

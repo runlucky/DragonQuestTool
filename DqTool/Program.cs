@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace DqTool
+namespace DqTool.UI
 {
     internal static class Program
     {

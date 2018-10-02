@@ -1,4 +1,4 @@
-﻿namespace DqTool
+﻿namespace DqTool.UI
 {
     partial class HpGauge
     {

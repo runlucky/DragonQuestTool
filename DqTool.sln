@@ -2,13 +2,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DqTool", "DqTool\DqTool.csproj", "{281F0168-D88A-4C64-9A11-F42D2EAC8FFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DqTool.UI", "DqTool\DqTool.UI.csproj", "{281F0168-D88A-4C64-9A11-F42D2EAC8FFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DqLibrary", "DqLibrary\DqLibrary.csproj", "{FBF07772-CF92-4795-91C3-A9C59557E5FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DqTool.Core", "DqLibrary\DqTool.Core.csproj", "{FBF07772-CF92-4795-91C3-A9C59557E5FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DqToolTests", "DqToolTests\DqToolTests.csproj", "{AA781DE5-2342-4D81-B417-7A874801F785}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DqTool.UI.Tests", "DqToolTests\DqTool.UI.Tests.csproj", "{AA781DE5-2342-4D81-B417-7A874801F785}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DqLibraryTests", "DqLibraryTests\DqLibraryTests.csproj", "{15783B06-C85E-4E56-8B96-3F66FF8FC3B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DqTool.Core.Tests", "DqLibraryTests\DqTool.Core.Tests.csproj", "{15783B06-C85E-4E56-8B96-3F66FF8FC3B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E075C4D7-6811-4B8E-B2DC-8E66708D9256}"
 	ProjectSection(SolutionItems) = preProject

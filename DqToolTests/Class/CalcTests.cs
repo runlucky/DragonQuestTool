@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DqTool.Tests
+namespace DqTool.UI.Tests
 {
     [TestClass()]
     public class CalcTests

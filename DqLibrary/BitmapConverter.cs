@@ -8,9 +8,9 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
-using DqLibrary.Extensions;
+using DqTool.Core.Extensions;
 
-namespace DqLibrary
+namespace DqTool.Core
 {
 
     public class BitmapConverter

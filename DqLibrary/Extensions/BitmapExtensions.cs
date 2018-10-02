@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Linq;
 
-namespace DqLibrary.Extensions
+namespace DqTool.Core.Extensions
 {
     public static class BitmapExtensions
     {
