@@ -42,7 +42,6 @@ namespace DqTool.UI
             if (isAnalyzing)
             {
                 button.Text = "計測開始";
-
             }
             else
             {
@@ -72,8 +71,11 @@ namespace DqTool.UI
         }
 
         private void ReflashImage() => pictureBox1.Image = scanner.ReScanImage(ScanLocation);
+
         private void ScanPosX_ValueChanged(object sender, EventArgs e) => ReflashImage();
+
         private void ScanPosY_ValueChanged(object sender, EventArgs e) => ReflashImage();
+
         private void Button1_Click_1(object sender, EventArgs e) => ReflashImage();
     }
 }

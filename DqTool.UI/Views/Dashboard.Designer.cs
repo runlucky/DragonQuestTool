@@ -1,4 +1,4 @@
-﻿namespace DqTool.UI
+namespace DqTool.UI
 {
     partial class Dashboard
     {
@@ -150,8 +150,9 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::DqTool.Properties.Resources._01_oyabun2;
+            this.pictureBox2.Image = global::DqTool.UI.Properties.Resources._01_oyabun2;
             this.pictureBox2.ImageLocation = "";
+            this.pictureBox2.InitialImage = Properties.Resources._01_oyabun2;
             this.pictureBox2.Location = new System.Drawing.Point(4, 124);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(144, 32);
@@ -168,7 +169,7 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click_1);
             // 
-            // Form1
+            // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -187,7 +188,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "どらくえつーる";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);

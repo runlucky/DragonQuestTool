@@ -30,7 +30,7 @@
         {
             this.labelHp = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.progress = new DqTool.SmoothProgressBar();
+            this.progress = new SmoothProgressBar();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
