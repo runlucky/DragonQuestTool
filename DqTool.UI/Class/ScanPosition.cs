@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace DqTool.UI.Class
 {
-    public class ScanPos
+    public class ScanPosition
     {
         public Point Damage { get; set; }
         public Point Name { get; set; }
