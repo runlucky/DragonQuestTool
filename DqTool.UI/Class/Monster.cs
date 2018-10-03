@@ -20,7 +20,7 @@ namespace DqTool.UI
         public int HealPoint { get; }
         private int Autoheal { get; }
         public bool HasAutoHeal => Autoheal != 0;
-        public HpGauge FormHp { get; }
+        public HpGauge HpGauge { get; }
 
         private int hp;
         private readonly int mhp;
@@ -81,35 +81,56 @@ namespace DqTool.UI
             canHeal = true;
             canAutoHeal = true;
 
-            FormHp = new HpGauge(mhp, GetFormType(n));
-            FormHp.ReLocation();
-            FormHp.Show();
+            HpGauge = new HpGauge(mhp, GetLocation());
+            HpGauge.Show();
         }
 
-        private FormType GetFormType(MonsterName n)
+        private Point GetLocation()
         {
-            switch (n)
+            switch (Name)
             {
                 case MonsterName.GenjinA:
                 case MonsterName.Kandata:
                 case MonsterName.BattlerA:
-                    return FormType.Left;
+                    return Properties.Settings.Default.HpLPos;
 
                 case MonsterName.GenjinC:
                 case MonsterName.BattlerB:
-                    return FormType.Right;
+                    return Properties.Settings.Default.HpRPos;
 
                 default:
-                    return FormType.Center;
+                    return Properties.Settings.Default.HpPos;
             }
+        }
+        private void SaveLocation(Point location)
+        {
+            switch (Name)
+            {
+                case MonsterName.GenjinA:
+                case MonsterName.Kandata:
+                case MonsterName.BattlerA:
+                    Properties.Settings.Default.HpLPos = location;
+                    break;
+
+                case MonsterName.GenjinC:
+                case MonsterName.BattlerB:
+                    Properties.Settings.Default.HpRPos = location;
+                    break;
+
+                default:
+                    Properties.Settings.Default.HpPos = location;
+                    break;
+            }
+            Properties.Settings.Default.Save();
         }
 
         public void Destroy()
         {
-            if (!FormHp.IsDisposed)
+            if (!HpGauge.IsDisposed)
             {
-                FormHp.Close();
-                FormHp.Dispose();
+                HpGauge.Close();
+                SaveLocation(HpGauge.Location);
+                HpGauge.Dispose();
             }
         }
 
@@ -119,7 +140,7 @@ namespace DqTool.UI
         /// </summary>
         public bool Damage(int d)
         {
-            if (FormHp.IsDisposed) return true;
+            if (HpGauge.IsDisposed) return true;
             if (d == -1)
             {
                 canDamage = true;
@@ -129,7 +150,7 @@ namespace DqTool.UI
             if (isDQ5 && hp == 2047) return false;
             hp = Math.Max(hp - d, 0);
             canDamage = false;
-            FormHp.SetHp(hp);
+            HpGauge.Hp = hp;
             if (hp == 0)
             {
                 return true;
@@ -150,7 +171,7 @@ namespace DqTool.UI
             if (!canHeal) return;
             hp = Math.Min(hp + HealPoint, mhp);
             canHeal = false;
-            FormHp.SetHp(hp);
+            HpGauge.Hp = hp;
         }
 
         /// <summary>
@@ -168,7 +189,7 @@ namespace DqTool.UI
                     if (!canAutoHeal) return;
                     hp = Math.Min(hp + Autoheal, mhp);
                     canAutoHeal = false;
-                    FormHp.SetHp(hp);
+                    HpGauge.Hp = hp;
                     break;
             }
         }

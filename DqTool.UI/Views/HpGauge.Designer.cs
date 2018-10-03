@@ -45,6 +45,8 @@
             this.labelHp.Size = new System.Drawing.Size(40, 18);
             this.labelHp.TabIndex = 0;
             this.labelHp.Text = "4500";
+            this.labelHp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this.labelHp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnMouseMove);
             // 
             // panel1
             // 
@@ -66,6 +68,8 @@
             this.progress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progress.TabIndex = 1;
             this.progress.Value = 100;
+            this.progress.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this.progress.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnMouseMove);
             // 
             // FormHp
             // 
@@ -81,10 +85,9 @@
             this.Text = "FormHp";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Red;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormHp_FormClosing);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormHp_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormHp_MouseMove);
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.FormHp_PreviewKeyDown);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnMouseMove);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.OnPreviewKeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

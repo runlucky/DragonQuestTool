@@ -157,7 +157,7 @@ namespace DqTool.UI
                 }
             }
 
-            mst.RemoveAll(x => x.FormHp == null);
+            mst.RemoveAll(x => x.HpGauge == null);
         }
 
         /// <summary>
