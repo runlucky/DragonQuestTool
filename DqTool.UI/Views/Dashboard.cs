@@ -42,10 +42,15 @@ namespace DqTool.UI
             if (isAnalyzing)
             {
                 button.Text = "計測開始";
+                scanner.shouldScanStop = true;
+                isAnalyzing = false;
             }
             else
             {
                 button.Text = "計測終了";
+                scanner.shouldScanStop = false;
+                isAnalyzing = true;
+
                 scanner.Init(new Point(Decimal.ToInt32(scanPosX.Value), Decimal.ToInt32(scanPosY.Value)));
 
                 while (true)
@@ -55,8 +60,6 @@ namespace DqTool.UI
                     labelMs.Text = $"負荷 {time}ms";
                 }
             }
-            scanner.shouldScanStop = isAnalyzing;
-            isAnalyzing = isAnalyzing.Toggle();
         }
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)
