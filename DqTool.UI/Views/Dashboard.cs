@@ -13,6 +13,8 @@ using System.Security.Cryptography;
 
 using DqTool.Core.Extensions;
 using DqTool.Core;
+using System.Diagnostics;
+using DqTool.UI.Class;
 
 namespace DqTool.UI
 {
@@ -20,8 +22,8 @@ namespace DqTool.UI
     {
         private List<Monster> mst = new List<Monster>();
         private bool isAnalyzing = false;
-        private bool isCose = false;
-        private ScanPos pos = new ScanPos();
+        private bool shouldScanStop = false;
+        private Scanner scanner = new Scanner();
 
         public Dashboard()
         {
@@ -36,23 +38,20 @@ namespace DqTool.UI
             ReScanImage();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void OnScanButtonClick(object sender, EventArgs e)
         {
-            if (isAnalyzing)
+            button.Text = isAnalyzing ? "計測開始" : "計測終了";
+
+            if (!isAnalyzing)
             {
-                button.Text = "計測開始";
-                isAnalyzing = false;
-                isCose = true;
+                scanner.Init(new Point(Decimal.ToInt32(scanPosX.Value), Decimal.ToInt32(scanPosY.Value)));
+                Scan();
             }
-            else
-            {
-                Init();
-                Main();
-                isCose = false;
-            }
+            shouldScanStop = isAnalyzing;
+            isAnalyzing = isAnalyzing.Toggle();
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             mst.ForEach(x => x.Destroy());
 
@@ -63,29 +62,15 @@ namespace DqTool.UI
             Properties.Settings.Default.Save();
         }
 
-        private void Init()
+        private async void Scan()
         {
-            isAnalyzing = true;
-
-            button.Text = "計測終了";
-
-            pos.Damage = new Point(Decimal.ToInt32(scanPosX.Value), Decimal.ToInt32(scanPosY.Value));
-            pos.Heal = new Point(pos.Damage.X, pos.Damage.Y - 32);
-            pos.AutoHeal = new Point(pos.Damage.X, pos.Damage.Y - 16 * 18);
-            pos.Name = new Point(pos.Damage.X + 16 * 9, pos.Damage.Y - 16 * 3);
-            pos.NameSize = new Size(128, 32);
-        }
-
-        private async void Main()
-        {
-            var sw = new System.Diagnostics.Stopwatch();
-            sw.Start();
+            var sw = Stopwatch.StartNew();
 
             while (true)
             {
                 sw.Restart();
 
-                if (isCose)
+                if (shouldScanStop)
                 {
                     EndBattle();
                     return;
@@ -96,7 +81,7 @@ namespace DqTool.UI
                 Heal();
                 AutoHeal();
 
-                labelMs.Text = sw.ElapsedMilliseconds + "ms";
+                labelMs.Text = $"負荷 {sw.ElapsedMilliseconds}ms";
                 await Task.Delay(tbWait.Text.ToInt(100));
             }
         }
@@ -110,18 +95,8 @@ namespace DqTool.UI
         /// </summary>
         private void CreateMonster()
         {
-            var name = GetName();
-            if (name == MonsterName.Unknown) return;
-            if (mst.Any(x => x.Name == name)) return;
-
-            if (name == MonsterName.Mirudo1 || name == MonsterName.Mirudo2)
-            {
-                if (mirudoCounter != 0)
-                {
-                    mirudoCounter--;
-                    return;
-                }
-            }
+            var name = ScanMonsterName();
+            if (!CanCreateMonster(name)) return;
 
             mst.ForEach(x => x.Destroy());
             mst.Clear();
@@ -139,6 +114,24 @@ namespace DqTool.UI
             }
         }
 
+        private bool CanCreateMonster(MonsterName name)
+        {
+            if (name == MonsterName.Unknown) return false;
+            if (mst.Any(x => x.Name == name)) return false;
+
+            if (name == MonsterName.Mirudo1 || name == MonsterName.Mirudo2)
+            {
+                if (mirudoCounter != 0)
+                {
+                    mirudoCounter--;
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+
         /// <summary>
         /// ダメージ処理を行う
         /// モンスターがいない場合は何もしない
@@ -147,7 +140,7 @@ namespace DqTool.UI
         {
             foreach (var v in mst)
             {
-                if (v.Damage(v.GetDamage(pos.Damage)))
+                if (v.Damage(v.GetDamage(scanner.Damage)))
                 {
                     if (v.Name == MonsterName.Mirudo1 || v.Name == MonsterName.Mirudo2)
                     {
@@ -167,14 +160,14 @@ namespace DqTool.UI
         /// </summary>
         private void Heal()
         {
-            foreach (var v in mst.Where(x => x.HealPoint != 0)) v.Heal(v.IsHeal(pos.Heal));
+            foreach (var v in mst.Where(x => x.HealPoint != 0)) v.Heal(v.IsHeal(scanner.Heal));
         }
 
         private void EndBattle()
         {
             mst.ForEach(x => x.Destroy());
             mst.Clear();
-            isCose = false;
+            shouldScanStop = false;
         }
 
         /// <summary>
@@ -182,21 +175,21 @@ namespace DqTool.UI
         /// </summary>
         private void AutoHeal()
         {
-            foreach (var v in mst.Where(x => x.HasAutoHeal)) v.AutoHeal(pos.AutoHeal);
+            foreach (var v in mst.Where(x => x.HasAutoHeal)) v.AutoHeal(scanner.AutoHeal);
         }
 
         /// <summary>
         /// ミルドラースの場合はスキャン位置が違う
         /// </summary>
         /// <returns></returns>
-        private MonsterName GetName()
+        private MonsterName ScanMonsterName()
         {
-            var name = new Rectangle(pos.Name, pos.NameSize).ToBitmap();
+            var name = new Rectangle(scanner.Name, scanner.NameSize).ToBitmap();
             foreach (var v in Monster.monsterData)
             {
                 if (name.Equal(v.Value.NameBmp)) return v.Key;
             }
-            name = new Rectangle(pos.Name.X + 32, pos.Name.Y - 16 * 8, 64, 32).ToBitmap();
+            name = new Rectangle(scanner.Name.X + 32, scanner.Name.Y - 16 * 8, 64, 32).ToBitmap();
             if (name.Equal(Monster.monsterData[MonsterName.Mirudo1].NameBmp)) return MonsterName.Mirudo1;
             if (name.Equal(Monster.monsterData[MonsterName.Mirudo2].NameBmp)) return MonsterName.Mirudo2;
 
@@ -221,15 +214,6 @@ namespace DqTool.UI
         private void Button1_Click_1(object sender, EventArgs e)
         {
             ReScanImage();
-        }
-
-        private class ScanPos
-        {
-            public Point Damage { get; set; }
-            public Point Name { get; set; }
-            public Point Heal { get; set; }
-            public Point AutoHeal { get; set; }
-            public Size NameSize { get; set; }
         }
     }
 }

@@ -114,6 +114,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Extensions\EventArgsExtensions.cs" />
+    <Compile Include="Class\Scanner.cs" />
+    <Compile Include="Class\ScanPosition.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

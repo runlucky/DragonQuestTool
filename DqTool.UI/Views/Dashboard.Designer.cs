@@ -54,7 +54,7 @@
             this.button.TabIndex = 0;
             this.button.Text = "計測開始";
             this.button.UseVisualStyleBackColor = true;
-            this.button.Click += new System.EventHandler(this.Button1_Click);
+            this.button.Click += new System.EventHandler(this.OnScanButtonClick);
             // 
             // labelMs
             // 
@@ -190,7 +190,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "どらくえつーる";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scanPosX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scanPosY)).EndInit();
