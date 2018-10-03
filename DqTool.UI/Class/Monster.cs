@@ -14,7 +14,7 @@ namespace DqTool.UI
     /// <summary>
     /// モンスターの管理
     /// </summary>
-    public class Monster
+    public class Monster : IDisposable
     {
         public MonsterName Name { get; }
         public int HealPoint { get; }
@@ -124,7 +124,7 @@ namespace DqTool.UI
             Properties.Settings.Default.Save();
         }
 
-        public void Destroy()
+        public void Dispose()
         {
             if (!HpGauge.IsDisposed)
             {
