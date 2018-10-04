@@ -7,30 +7,56 @@ using System.Linq;
 using System.Threading.Tasks;
 using DqTool.Core;
 using DqTool.Core.Extensions;
+using static DqTool.UI.Monster;
 
 namespace DqTool.UI.Class
 {
     public class Scanner : IDisposable
     {
         public bool shouldScanStop = false;
-        private List<Monster> mst = new List<Monster>();
-        private ScanPosition scan = new ScanPosition();
-        private Stopwatch sw = new Stopwatch();
+        private List<Monster> _monsters = new List<Monster>();
+        private ScanPosition scan;
+        private readonly Stopwatch _stopWatch = new Stopwatch();
 
+        public static readonly Dictionary<MonsterName, MonsterData> monsterData = new Dictionary<MonsterName, MonsterData>() {
+            {MonsterName.Oyabun,   new MonsterData(MonsterName.Oyabun,    200,  0, Properties.Resources._01_oyabun1  , Properties.Resources._01_oyabun2  , null, 0, true)},
+            {MonsterName.Zairu,    new MonsterData(MonsterName.Zairu,     160,  0, Properties.Resources._02_zairu1   , Properties.Resources._02_zairu2   , Properties.Resources._02_zairu3  , 35, true)},
+            {MonsterName.Joou,     new MonsterData(MonsterName.Joou,      600,  0, Properties.Resources._03_joou1    , Properties.Resources._03_joou2    , Properties.Resources._03_joou3   , 35, true)},
+            {MonsterName.Taikou,   new MonsterData(MonsterName.Taikou,    350,  0, Properties.Resources._04_taikou1  , Properties.Resources._04_taikou2  , null, 0, true)},
+            {MonsterName.GenjinA,  new MonsterData(MonsterName.GenjinA,   400,  0, Properties.Resources._05_genjin1  , Properties.Resources._05_genjinA  , null, 0, true)},
+            {MonsterName.GenjinB,  new MonsterData(MonsterName.GenjinB,   400,  0, Properties.Resources._05_genjin1  , Properties.Resources._05_genjinB  , null, 0, true)},
+            {MonsterName.GenjinC,  new MonsterData(MonsterName.GenjinC,   400,  0, Properties.Resources._05_genjin1  , Properties.Resources._05_genjinC  , null, 0, true)},
+            {MonsterName.Kandata,  new MonsterData(MonsterName.Kandata,   600,  0, Properties.Resources._06_kandata1 , Properties.Resources._06_kandata2 , Properties.Resources._06_kandata3, 85, true)},
+            {MonsterName.Oku,      new MonsterData(MonsterName.Oku,       950,  0, Properties.Resources._07_oku1     , Properties.Resources._07_oku2     , null, 0, true)},
+            {MonsterName.Kimera,   new MonsterData(MonsterName.Kimera,    800,  0, Properties.Resources._08_kimera1  , Properties.Resources._08_kimera2  , Properties.Resources._08_kimera3 , 85, true)},
+            {MonsterName.Jami,     new MonsterData(MonsterName.Jami,      820,  0, Properties.Resources._09_jami1    , Properties.Resources._09_jami2    , Properties.Resources._09_jami3   , 820, true)},
+            {MonsterName.Kobun,    new MonsterData(MonsterName.Kobun,     500,  0, Properties.Resources._10_kobun1   , Properties.Resources._10_kobun2   , null, 0, true)},
+            {MonsterName.Gonzu,    new MonsterData(MonsterName.Gonzu,    1700,  0, Properties.Resources._11_gonzu1   , Properties.Resources._11_gonzu2   , null, 0, true)},
+            {MonsterName.Gema,     new MonsterData(MonsterName.Gema,     4500,  0, Properties.Resources._12_gema1    , Properties.Resources._12_gema2    , null, 0, true)},
+            {MonsterName.Ramada,   new MonsterData(MonsterName.Ramada,   2000,  0, Properties.Resources._13_ramada1  , Properties.Resources._13_ramada2  , null, 0, true)},
+            {MonsterName.Iburu,    new MonsterData(MonsterName.Iburu,    4500,  0, Properties.Resources._14_iburu1   , Properties.Resources._14_iburu2   , null, 0, true)},
+            {MonsterName.Buon,     new MonsterData(MonsterName.Buon,     4500,  0, Properties.Resources._15_buon1    , Properties.Resources._15_buon2    , null, 0, true)},
+            {MonsterName.BattlerA, new MonsterData(MonsterName.BattlerA,  450,  0, Properties.Resources._16_hell1    , Properties.Resources._16_hellA    , null, 0, true)},
+            {MonsterName.BattlerB, new MonsterData(MonsterName.BattlerB,  450,  0, Properties.Resources._16_hell1    , Properties.Resources._16_hellB    , null, 0, true)},
+            {MonsterName.Mirudo1,  new MonsterData(MonsterName.Mirudo1,  1600, 50, Properties.Resources._17_mirudo1a , Properties.Resources._17_mirudo2  , null, 0, true)},
+            {MonsterName.Mirudo2,  new MonsterData(MonsterName.Mirudo2,  4500,  0, Properties.Resources._17_mirudo1b , Properties.Resources._17_mirudo2  , Properties.Resources._17_mirudo3 , 500, true)}
+        };
 
         public void Init(Point basePoint)
         {
-            scan.Damage = new Point(basePoint.X, basePoint.Y);
-            scan.Heal = new Point(scan.Damage.X, scan.Damage.Y - 32);
-            scan.AutoHeal = new Point(scan.Damage.X, scan.Damage.Y - 16 * 18);
-            scan.Name = new Point(scan.Damage.X + 16 * 9, scan.Damage.Y - 16 * 3);
-            scan.NameSize = new Size(128, 32);
+            scan = new ScanPosition
+            {
+                Damage = new Point(basePoint.X, basePoint.Y),
+                Heal = new Point(scan.Damage.X, scan.Damage.Y - 32),
+                AutoHeal = new Point(scan.Damage.X, scan.Damage.Y - 16 * 18),
+                Name = new Point(scan.Damage.X + 16 * 9, scan.Damage.Y - 16 * 3),
+                NameSize = new Size(128, 32)
+            };
         }
-
 
         public async Task<int> ScanAsync(int wait)
         {
-            sw.Restart();
+            _stopWatch.Restart();
 
             if (shouldScanStop)
             {
@@ -44,7 +70,7 @@ namespace DqTool.UI.Class
             AutoHeal();
 
             await Task.Delay(wait);
-            return (int)sw.ElapsedMilliseconds;
+            return (int)_stopWatch.ElapsedMilliseconds;
         }
 
         private int mirudoCounter = 0;
@@ -59,26 +85,26 @@ namespace DqTool.UI.Class
             var name = ScanMonsterName();
             if (!CanCreateMonster(name)) return;
 
-            mst.ForEach(x => x.Dispose());
-            mst.Clear();
+            _monsters.ForEach(x => x.Dispose());
+            _monsters.Clear();
 
-            mst.Add(new Monster(name));
+            _monsters.Add(new Monster(monsterData[name]));
 
             if (name == MonsterName.GenjinA)
             {
-                mst.Add(new Monster(MonsterName.GenjinB));
-                mst.Add(new Monster(MonsterName.GenjinC));
+                _monsters.Add(new Monster(monsterData[MonsterName.GenjinB]));
+                _monsters.Add(new Monster(monsterData[MonsterName.GenjinC]));
             }
             else if (name == MonsterName.BattlerA)
             {
-                mst.Add(new Monster(MonsterName.BattlerB));
+                _monsters.Add(new Monster(monsterData[MonsterName.BattlerB]));
             }
         }
 
         private bool CanCreateMonster(MonsterName name)
         {
             if (name == MonsterName.Unknown) return false;
-            if (mst.Any(x => x.Name == name)) return false;
+            if (_monsters.Any(x => x.Name == name)) return false;
 
             if (name == MonsterName.Mirudo1 || name == MonsterName.Mirudo2)
             {
@@ -91,9 +117,6 @@ namespace DqTool.UI.Class
             return true;
         }
 
-
-
-
         /// <summary>
         /// 回復処理を行う
         /// モンスターがいない場合は何もしない
@@ -101,13 +124,13 @@ namespace DqTool.UI.Class
         /// </summary>
         private void Heal()
         {
-            foreach (var v in mst.Where(x => x.HealPoint != 0)) v.Heal(v.IsHeal(scan.Heal));
+            foreach (var v in _monsters.Where(x => x.HealPoint != 0)) v.Heal(v.IsHeal(scan.Heal));
         }
 
         private void EndBattle()
         {
-            mst.ForEach(x => x.Dispose());
-            mst.Clear();
+            _monsters.ForEach(x => x.Dispose());
+            _monsters.Clear();
             shouldScanStop = false;
         }
 
@@ -116,7 +139,7 @@ namespace DqTool.UI.Class
         /// </summary>
         private void AutoHeal()
         {
-            foreach (var v in mst.Where(x => x.HasAutoHeal)) v.AutoHeal(scan.AutoHeal);
+            foreach (var v in _monsters) v.AutoHeal(scan.AutoHeal);
         }
 
         /// <summary>
@@ -126,13 +149,13 @@ namespace DqTool.UI.Class
         private MonsterName ScanMonsterName()
         {
             var name = new Rectangle(scan.Name, scan.NameSize).ToBitmap();
-            foreach (var v in Monster.monsterData)
+            foreach (var v in monsterData)
             {
                 if (name.Equal(v.Value.NameBmp)) return v.Key;
             }
             name = new Rectangle(scan.Name.X + 32, scan.Name.Y - 16 * 8, 64, 32).ToBitmap();
-            if (name.Equal(Monster.monsterData[MonsterName.Mirudo1].NameBmp)) return MonsterName.Mirudo1;
-            if (name.Equal(Monster.monsterData[MonsterName.Mirudo2].NameBmp)) return MonsterName.Mirudo2;
+            if (name.Equal(monsterData[MonsterName.Mirudo1].NameBmp)) return MonsterName.Mirudo1;
+            if (name.Equal(monsterData[MonsterName.Mirudo2].NameBmp)) return MonsterName.Mirudo2;
 
             return MonsterName.Unknown;
         }
@@ -143,7 +166,7 @@ namespace DqTool.UI.Class
         /// </summary>
         public void Damage()
         {
-            foreach (var v in mst)
+            foreach (var v in _monsters)
             {
                 if (v.Damage(v.GetDamage(scan.Damage)))
                 {
@@ -155,7 +178,7 @@ namespace DqTool.UI.Class
                 }
             }
 
-            mst.RemoveAll(x => x.HpGauge == null);
+            _monsters.RemoveAll(x => x.IsDead);
         }
 
         public Bitmap ReScanImage(Point location)
@@ -165,7 +188,7 @@ namespace DqTool.UI.Class
 
         public void Dispose()
         {
-            mst.ForEach(x => x.Dispose());
+            _monsters.ForEach(x => x.Dispose());
         }
     }
 }

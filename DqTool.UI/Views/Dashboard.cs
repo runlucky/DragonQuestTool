@@ -51,7 +51,7 @@ namespace DqTool.UI
                 scanner.shouldScanStop = false;
                 isAnalyzing = true;
 
-                scanner.Init(new Point(Decimal.ToInt32(scanPosX.Value), Decimal.ToInt32(scanPosY.Value)));
+                scanner.Init(ScanLocation);
 
                 while (true)
                 {

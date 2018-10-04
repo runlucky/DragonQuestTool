@@ -19,8 +19,9 @@ namespace DqTool.UI
         public MonsterName Name { get; }
         public int HealPoint { get; }
         private int Autoheal { get; }
-        public bool HasAutoHeal => Autoheal != 0;
-        public HpGauge HpGauge { get; }
+        private bool HasAutoHeal => Autoheal != 0;
+        private readonly HpGauge _hpGauge;
+        public bool IsDead => _hpGauge == null;
 
         private int hp;
         private readonly int mhp;
@@ -40,37 +41,11 @@ namespace DqTool.UI
             Nathing
         }
 
-        public static readonly Dictionary<MonsterName, MonsterData> monsterData = new Dictionary<MonsterName, MonsterData>() {
-            {MonsterName.Oyabun,   new MonsterData( 200,  0, Properties.Resources._01_oyabun1  , Properties.Resources._01_oyabun2  , null, 0, true)},
-            {MonsterName.Zairu,    new MonsterData( 160,  0, Properties.Resources._02_zairu1   , Properties.Resources._02_zairu2   , Properties.Resources._02_zairu3  , 35, true)},
-            {MonsterName.Joou,     new MonsterData( 600,  0, Properties.Resources._03_joou1    , Properties.Resources._03_joou2    , Properties.Resources._03_joou3   , 35, true)},
-            {MonsterName.Taikou,   new MonsterData( 350,  0, Properties.Resources._04_taikou1  , Properties.Resources._04_taikou2  , null, 0, true)},
-            {MonsterName.GenjinA,  new MonsterData( 400,  0, Properties.Resources._05_genjin1  , Properties.Resources._05_genjinA  , null, 0, true)},
-            {MonsterName.GenjinB,  new MonsterData( 400,  0, Properties.Resources._05_genjin1  , Properties.Resources._05_genjinB  , null, 0, true)},
-            {MonsterName.GenjinC,  new MonsterData( 400,  0, Properties.Resources._05_genjin1  , Properties.Resources._05_genjinC  , null, 0, true)},
-            {MonsterName.Kandata,  new MonsterData( 600,  0, Properties.Resources._06_kandata1 , Properties.Resources._06_kandata2 , Properties.Resources._06_kandata3, 85, true)},
-            {MonsterName.Oku,      new MonsterData( 950,  0, Properties.Resources._07_oku1     , Properties.Resources._07_oku2     , null, 0, true)},
-            {MonsterName.Kimera,   new MonsterData( 800,  0, Properties.Resources._08_kimera1  , Properties.Resources._08_kimera2  , Properties.Resources._08_kimera3 , 85, true)},
-            {MonsterName.Jami,     new MonsterData( 820,  0, Properties.Resources._09_jami1    , Properties.Resources._09_jami2    , Properties.Resources._09_jami3   , 820, true)},
-            {MonsterName.Kobun,    new MonsterData( 500,  0, Properties.Resources._10_kobun1   , Properties.Resources._10_kobun2   , null, 0, true)},
-            {MonsterName.Gonzu,    new MonsterData(1700,  0, Properties.Resources._11_gonzu1   , Properties.Resources._11_gonzu2   , null, 0, true)},
-            {MonsterName.Gema,     new MonsterData(4500,  0, Properties.Resources._12_gema1    , Properties.Resources._12_gema2    , null, 0, true)},
-            {MonsterName.Ramada,   new MonsterData(2000,  0, Properties.Resources._13_ramada1  , Properties.Resources._13_ramada2  , null, 0, true)},
-            {MonsterName.Iburu,    new MonsterData(4500,  0, Properties.Resources._14_iburu1   , Properties.Resources._14_iburu2   , null, 0, true)},
-            {MonsterName.Buon,     new MonsterData(4500,  0, Properties.Resources._15_buon1    , Properties.Resources._15_buon2    , null, 0, true)},
-            {MonsterName.BattlerA, new MonsterData( 450,  0, Properties.Resources._16_hell1    , Properties.Resources._16_hellA    , null, 0, true)},
-            {MonsterName.BattlerB, new MonsterData( 450,  0, Properties.Resources._16_hell1    , Properties.Resources._16_hellB    , null, 0, true)},
-            {MonsterName.Mirudo1,  new MonsterData(1600, 50, Properties.Resources._17_mirudo1a , Properties.Resources._17_mirudo2  , null, 0, true)},
-            {MonsterName.Mirudo2,  new MonsterData(4500,  0, Properties.Resources._17_mirudo1b , Properties.Resources._17_mirudo2  , Properties.Resources._17_mirudo3 , 500, true)}
-        };
-
-        public Monster(MonsterName n)
+        public Monster(MonsterData mdata)
         {
-            var mdata = monsterData[n];
-
             hp = mdata.Hp;
             mhp = mdata.Hp;
-            Name = n;
+            Name = mdata.Name;
             damageBmp = mdata.DamageBmp;
             healBmp = mdata.HealBmp;
             HealPoint = mdata.HealPoint;
@@ -81,8 +56,8 @@ namespace DqTool.UI
             canHeal = true;
             canAutoHeal = true;
 
-            HpGauge = new HpGauge(mhp, GetLocation());
-            HpGauge.Show();
+            _hpGauge = new HpGauge(mhp, GetLocation());
+            _hpGauge.Show();
         }
 
         private Point GetLocation()
@@ -102,6 +77,7 @@ namespace DqTool.UI
                     return Properties.Settings.Default.HpPos;
             }
         }
+
         private void SaveLocation(Point location)
         {
             switch (Name)
@@ -126,11 +102,11 @@ namespace DqTool.UI
 
         public void Dispose()
         {
-            if (!HpGauge.IsDisposed)
+            if (!_hpGauge.IsDisposed)
             {
-                HpGauge.Close();
-                SaveLocation(HpGauge.Location);
-                HpGauge.Dispose();
+                _hpGauge.Close();
+                SaveLocation(_hpGauge.Location);
+                _hpGauge.Dispose();
             }
         }
 
@@ -140,7 +116,7 @@ namespace DqTool.UI
         /// </summary>
         public bool Damage(int d)
         {
-            if (HpGauge.IsDisposed) return true;
+            if (_hpGauge.IsDisposed) return true;
             if (d == -1)
             {
                 canDamage = true;
@@ -150,7 +126,7 @@ namespace DqTool.UI
             if (isDQ5 && hp == 2047) return false;
             hp = Math.Max(hp - d, 0);
             canDamage = false;
-            HpGauge.Hp = hp;
+            _hpGauge.Hp = hp;
             if (hp == 0)
             {
                 return true;
@@ -171,7 +147,7 @@ namespace DqTool.UI
             if (!canHeal) return;
             hp = Math.Min(hp + HealPoint, mhp);
             canHeal = false;
-            HpGauge.Hp = hp;
+            _hpGauge.Hp = hp;
         }
 
         /// <summary>
@@ -179,6 +155,7 @@ namespace DqTool.UI
         /// </summary>
         public void AutoHeal(Point scanPos)
         {
+            if (!HasAutoHeal) return;
             switch (Calc.GetPhase(new Rectangle(scanPos, new Size(16, 48)).ToBitmap()))
             {
                 case Phase.Battle:
@@ -189,7 +166,7 @@ namespace DqTool.UI
                     if (!canAutoHeal) return;
                     hp = Math.Min(hp + Autoheal, mhp);
                     canAutoHeal = false;
-                    HpGauge.Hp = hp;
+                    _hpGauge.Hp = hp;
                     break;
             }
         }
@@ -258,9 +235,11 @@ namespace DqTool.UI
             public Bitmap HealBmp { get; }
             public int HealPoint { get; }
             public bool IsDq5 { get; }
+            public MonsterName Name { get; }
 
-            public MonsterData(int h, int a, Bitmap nb, Bitmap db, Bitmap hb, int ht, bool dq5)
+            public MonsterData(MonsterName name, int h, int a, Bitmap nb, Bitmap db, Bitmap hb, int ht, bool dq5)
             {
+                Name = name;
                 Hp = h;
                 Autoheal = a;
                 NameBmp = nb;
