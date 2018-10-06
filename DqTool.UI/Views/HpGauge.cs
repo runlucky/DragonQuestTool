@@ -10,30 +10,32 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using DqTool.Core;
 using DqTool.UI.Extensions;
+using DqTool.UI.Class;
 
 namespace DqTool.UI
 {
     public partial class HpGauge : Form
     {
-        public HpGauge(int maxHp, Point location)
+        private HitPoint _hitPoint;
+
+        public HpGauge(HitPoint hp, Point location)
         {
             InitializeComponent();
 
-            progress.Maximum = maxHp;
-            Hp = maxHp;
+            _hitPoint = hp;
+
+            progress.Maximum = _hitPoint.Now;
             Location = location;
         }
 
-        public int Hp
+        private void Reflesh()
         {
-            set
-            {
-                labelHp.Text = value.ToString();
-                progress.Value = value;
-            }
+            labelHp.Text = _hitPoint.Now.ToString();
+            progress.Value = _hitPoint.Now;
         }
 
         private Point _mousePoint;
+
         private void OnMouseDown(object sender, MouseEventArgs e)
         {
             if (!e.IsLeftClicking()) return;
@@ -56,6 +58,18 @@ namespace DqTool.UI
                 case Keys.Up: Top--; break;
                 case Keys.Down: Top++; break;
             }
+        }
+
+        internal void Heal(int value)
+        {
+            _hitPoint.Heal(value);
+            Refresh();
+        }
+
+        internal void Damage(int value)
+        {
+            _hitPoint.Damage(value);
+            Refresh();
         }
     }
 }
