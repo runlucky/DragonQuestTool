@@ -9,7 +9,7 @@ using System.Text;
 using DqTool.Core;
 using DqTool.Core.Extensions;
 
-namespace DqTool.UI
+namespace DqTool.UI.Class
 {
     /// <summary>
     /// モンスターの管理
@@ -20,11 +20,10 @@ namespace DqTool.UI
         public int HealPoint { get; }
         private int Autoheal { get; }
         private bool HasAutoHeal => Autoheal != 0;
-        private readonly HpGauge _hpGauge;
-        public bool IsDead => _hpGauge == null;
 
-        private int hp;
-        private readonly int mhp;
+        private readonly HpGauge _hpGauge;
+        private readonly HitPoint _hitPoint;
+
         private readonly Bitmap damageBmp;
         private readonly Bitmap healBmp;
         private readonly bool isDQ5;
@@ -34,17 +33,8 @@ namespace DqTool.UI
 
         private readonly BitmapConverter Converter = new BitmapConverter(Properties.Resources.number);
 
-        private enum HM
-        {
-            HM,
-            H,
-            Nathing
-        }
-
         public Monster(MonsterData mdata)
         {
-            hp = mdata.Hp;
-            mhp = mdata.Hp;
             Name = mdata.Name;
             damageBmp = mdata.DamageBmp;
             healBmp = mdata.HealBmp;
@@ -56,7 +46,8 @@ namespace DqTool.UI
             canHeal = true;
             canAutoHeal = true;
 
-            _hpGauge = new HpGauge(mhp, GetLocation());
+            _hitPoint = new HitPoint(mdata.Hp);
+            _hpGauge = new HpGauge(_hitPoint, GetLocation());
             _hpGauge.Show();
         }
 
@@ -145,9 +136,8 @@ namespace DqTool.UI
                 return;
             }
             if (!canHeal) return;
-            hp = Math.Min(hp + HealPoint, mhp);
             canHeal = false;
-            _hpGauge.Hp = hp;
+            _hpGauge.Heal(HealPoint);
         }
 
         /// <summary>
@@ -164,9 +154,8 @@ namespace DqTool.UI
 
                 case Phase.Command:
                     if (!canAutoHeal) return;
-                    hp = Math.Min(hp + Autoheal, mhp);
                     canAutoHeal = false;
-                    _hpGauge.Hp = hp;
+                    _hpGauge.Heal(Autoheal);
                     break;
             }
         }
@@ -221,33 +210,6 @@ namespace DqTool.UI
             return healBmp.Equal(new Rectangle(scanPos, healBmp.Size).ToBitmap());
         }
 
-        public class MonsterData
-        {
-            public int Hp { get; }
 
-            /// <summary>
-            /// 自動回復量
-            /// </summary>
-            public int Autoheal { get; }
-
-            public Bitmap NameBmp { get; }
-            public Bitmap DamageBmp { get; }
-            public Bitmap HealBmp { get; }
-            public int HealPoint { get; }
-            public bool IsDq5 { get; }
-            public MonsterName Name { get; }
-
-            public MonsterData(MonsterName name, int h, int a, Bitmap nb, Bitmap db, Bitmap hb, int ht, bool dq5)
-            {
-                Name = name;
-                Hp = h;
-                Autoheal = a;
-                NameBmp = nb;
-                DamageBmp = db;
-                HealBmp = hb;
-                HealPoint = ht;
-                IsDq5 = dq5;
-            }
-        }
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DqTool.Core;
 using DqTool.Core.Extensions;
-using static DqTool.UI.Monster;
+using static DqTool.UI.Class.Monster;
 
 namespace DqTool.UI.Class
 {
