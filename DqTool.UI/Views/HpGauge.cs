@@ -30,11 +30,12 @@ namespace DqTool.UI
 
         private void Reflesh()
         {
-                labelHp.Text = _hitPoint.Now.ToString();
-                progress.Value = _hitPoint.Now;
+            labelHp.Text = _hitPoint.Now.ToString();
+            progress.Value = _hitPoint.Now;
         }
 
         private Point _mousePoint;
+
         private void OnMouseDown(object sender, MouseEventArgs e)
         {
             if (!e.IsLeftClicking()) return;
@@ -62,6 +63,12 @@ namespace DqTool.UI
         internal void Heal(int value)
         {
             _hitPoint.Heal(value);
+            Refresh();
+        }
+
+        internal void Damage(int value)
+        {
+            _hitPoint.Damage(value);
             Refresh();
         }
     }

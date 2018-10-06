@@ -114,16 +114,13 @@ namespace DqTool.UI.Class
                 return false;
             }
             if (!canDamage) return false;
-            if (isDQ5 && hp == 2047) return false;
-            hp = Math.Max(hp - d, 0);
+            if (isDQ5 && _hitPoint.Now == 2047) return false;
             canDamage = false;
-            _hpGauge.Hp = hp;
-            if (hp == 0)
-            {
-                return true;
-            }
-            return false;
+            _hpGauge.Damage(d);
+            return IsDead;
         }
+
+        public bool IsDead => _hitPoint.Now == 0;
 
         /// <summary>
         /// 回復する

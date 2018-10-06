@@ -18,5 +18,11 @@ namespace DqTool.UI.Class
         {
             Now = Math.Min(Now + value, _max);
         }
+
+        internal void Damage(int value)
+        {
+            Now = Math.Max(Now - value, 0);
+        }
+
     }
 }
