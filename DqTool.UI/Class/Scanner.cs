@@ -163,23 +163,21 @@ namespace DqTool.UI.Class
 
         /// <summary>
         /// ダメージ処理を行う
-        /// モンスターがいない場合は何もしない
         /// </summary>
         public void Damage()
         {
-            foreach (var v in _monsters)
+            foreach (var monster in _monsters)
             {
-                if (v.Damage(GetDamage(scan.Damage, v.damageBmp)))
+                monster.Damage(GetDamage(scan.Damage, monster.damageBmp));
+                if (monster.IsDead)
                 {
-                    if (v.Name == MonsterName.Mirudo1 || v.Name == MonsterName.Mirudo2)
+                    if (monster.Name == MonsterName.Mirudo1 || monster.Name == MonsterName.Mirudo2)
                     {
                         mirudoCounter = 25;
                     }
-                    v.Dispose();
+                    monster.Dispose();
                 }
             }
-
-            //_monsters.RemoveAll(x => x.IsDead);
         }
 
         public Bitmap ReScanImage(Point location)

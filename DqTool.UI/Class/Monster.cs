@@ -63,19 +63,18 @@ namespace DqTool.UI.Class
         /// ダメージを与える
         /// 死んだらtrue返す
         /// </summary>
-        public bool Damage(int d)
+        public void Damage(int d)
         {
-            if (_hpGauge.IsDisposed) return true;
+            if (_hpGauge.IsDisposed) return;
             if (d == -1)
             {
                 canDamage = true;
-                return false;
+                return;
             }
-            if (!canDamage) return false;
-            if (isDQ5 && _hitPoint.Now == 2047) return false;
+            if (!canDamage) return;
+            if (isDQ5 && _hitPoint.Now == 2047) return;
             canDamage = false;
             _hpGauge.Damage(d);
-            return IsDead;
         }
 
         public bool IsDead => _hitPoint.Now == 0;
