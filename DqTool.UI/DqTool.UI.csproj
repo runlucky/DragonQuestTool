@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Class\Calc.cs" />
     <Compile Include="Class\Monster.cs" />
+    <Compile Include="Class\ResouceManager.cs" />
     <Compile Include="Views\SmoothProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>

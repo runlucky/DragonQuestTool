@@ -26,9 +26,10 @@ namespace DqTool.UI
 
             progress.Maximum = _hitPoint.Now;
             Location = location;
+            RefreshView();
         }
 
-        private void Reflesh()
+        private void RefreshView()
         {
             labelHp.Text = _hitPoint.Now.ToString();
             progress.Value = _hitPoint.Now;
@@ -63,13 +64,13 @@ namespace DqTool.UI
         internal void Heal(int value)
         {
             _hitPoint.Heal(value);
-            Refresh();
+            RefreshView();
         }
 
         internal void Damage(int value)
         {
             _hitPoint.Damage(value);
-            Refresh();
+            RefreshView();
         }
     }
 }

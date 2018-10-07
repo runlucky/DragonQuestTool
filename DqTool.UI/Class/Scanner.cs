@@ -17,6 +17,7 @@ namespace DqTool.UI.Class
         private List<Monster> _monsters = new List<Monster>();
         private ScanPosition scan;
         private readonly Stopwatch _stopWatch = new Stopwatch();
+        private readonly BitmapConverter Converter = new BitmapConverter(Properties.Resources.number);
 
         public static readonly Dictionary<MonsterName, MonsterData> monsterData = new Dictionary<MonsterName, MonsterData>() {
             {MonsterName.Oyabun,   new MonsterData(MonsterName.Oyabun,    200,  0, Properties.Resources._01_oyabun1  , Properties.Resources._01_oyabun2  , null, 0, true)},
@@ -168,7 +169,7 @@ namespace DqTool.UI.Class
         {
             foreach (var v in _monsters)
             {
-                if (v.Damage(v.GetDamage(scan.Damage)))
+                if (v.Damage(GetDamage(scan.Damage, v.damageBmp)))
                 {
                     if (v.Name == MonsterName.Mirudo1 || v.Name == MonsterName.Mirudo2)
                     {
@@ -189,6 +190,46 @@ namespace DqTool.UI.Class
         public void Dispose()
         {
             _monsters.ForEach(x => x.Dispose());
+        }
+
+        /// <summary>
+        /// ダメージ値を取得する
+        /// ダメージ値を１つも検出できなかった場合は-1を返す
+        /// </summary>
+        /// <param name="scanPos">最上位桁目の数値の座標</param>
+        /// <returns></returns>
+        public int GetDamage(Point scanPos, Bitmap damageBmp)
+        {
+            var rect = new Rectangle(scanPos, new Size(damageBmp.Width, damageBmp.Height + 32));
+            var monsterName = rect.ToBitmap();
+
+            rect.Location = new Point(0, 0);
+            rect.Height -= 32;
+            if (!damageBmp.Equal(monsterName.Clone(rect, monsterName.PixelFormat)))
+            {
+                scanPos.Y += 32;
+                rect.Y += 32;
+                if (!damageBmp.Equal(monsterName.Clone(rect, monsterName.PixelFormat))) return -1;
+            }
+
+            scanPos.X += damageBmp.Width + 16;
+            scanPos.Y += 16;
+
+            var numBmp = new Rectangle(scanPos, new Size(16 * 4, 16)).ToBitmap();
+            var scanSize = new Rectangle(0, 0, 16, 16);
+
+            var num = Converter.ToInt(numBmp.Clone(scanSize, numBmp.PixelFormat)) ?? -1;
+            if (num == -1) return num;
+
+            for (int i = 0; i < 3; i++)
+            {
+                scanSize.X += 16;
+                var tempNum = Converter.ToInt(numBmp.Clone(scanSize, numBmp.PixelFormat)) ?? -1;
+                if (tempNum == -1) return num;
+                num *= 10;
+                num += tempNum;
+            }
+            return num;
         }
     }
 }
