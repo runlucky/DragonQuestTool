@@ -179,7 +179,7 @@ namespace DqTool.UI.Class
                 }
             }
 
-            _monsters.RemoveAll(x => x.IsDead);
+            //_monsters.RemoveAll(x => x.IsDead);
         }
 
         public Bitmap ReScanImage(Point location)
