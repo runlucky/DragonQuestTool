@@ -23,6 +23,7 @@ namespace DqTool.UI.Class
 
         private readonly HpGauge _hpGauge;
         private readonly HitPoint _hitPoint;
+        public bool IsDead => _hitPoint.Now == 0;
 
         public readonly Bitmap damageBmp;
         private readonly Bitmap healBmp;
@@ -61,7 +62,6 @@ namespace DqTool.UI.Class
 
         /// <summary>
         /// ダメージを与える
-        /// 死んだらtrue返す
         /// </summary>
         public void Damage(int d)
         {
@@ -76,8 +76,6 @@ namespace DqTool.UI.Class
             canDamage = false;
             _hpGauge.Damage(d);
         }
-
-        public bool IsDead => _hitPoint.Now == 0;
 
         /// <summary>
         /// 回復する

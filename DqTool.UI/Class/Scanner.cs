@@ -48,9 +48,9 @@ namespace DqTool.UI.Class
             scan = new ScanPosition
             {
                 Damage = new Point(basePoint.X, basePoint.Y),
-                Heal = new Point(scan.Damage.X, scan.Damage.Y - 32),
-                AutoHeal = new Point(scan.Damage.X, scan.Damage.Y - 16 * 18),
-                Name = new Point(scan.Damage.X + 16 * 9, scan.Damage.Y - 16 * 3),
+                Heal = new Point(basePoint.X, basePoint.Y - 32),
+                AutoHeal = new Point(basePoint.X, basePoint.Y - 16 * 18),
+                Name = new Point(basePoint.X + 16 * 9, basePoint.Y - 16 * 3),
                 NameSize = new Size(128, 32)
             };
         }
@@ -150,9 +150,9 @@ namespace DqTool.UI.Class
         private MonsterName ScanMonsterName()
         {
             var name = new Rectangle(scan.Name, scan.NameSize).ToBitmap();
-            foreach (var v in monsterData)
+            foreach (var monster in monsterData)
             {
-                if (name.Equal(v.Value.NameBmp)) return v.Key;
+                if (name.Equal(monster.Value.NameBmp)) return monster.Key;
             }
             name = new Rectangle(scan.Name.X + 32, scan.Name.Y - 16 * 8, 64, 32).ToBitmap();
             if (name.Equal(monsterData[MonsterName.Mirudo1].NameBmp)) return MonsterName.Mirudo1;
