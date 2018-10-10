@@ -34,7 +34,7 @@ namespace DqTool.UI
             scanPosX.Value = data.ScanPos.X;
             scanPosY.Value = data.ScanPos.Y;
 
-            ReflashImage();
+            RefreshImage();
         }
 
         private async void OnScanButtonClick(object sender, EventArgs e)
@@ -73,12 +73,12 @@ namespace DqTool.UI
             Properties.Settings.Default.Save();
         }
 
-        private void ReflashImage() => pictureBox1.Image = scanner.ReScanImage(ScanLocation);
+        private void RefreshImage() => pictureBox1.Image = scanner.ReScanImage(ScanLocation);
 
-        private void ScanPosX_ValueChanged(object sender, EventArgs e) => ReflashImage();
+        private void ScanPosX_ValueChanged(object sender, EventArgs e) => RefreshImage();
 
-        private void ScanPosY_ValueChanged(object sender, EventArgs e) => ReflashImage();
+        private void ScanPosY_ValueChanged(object sender, EventArgs e) => RefreshImage();
 
-        private void Button1_Click_1(object sender, EventArgs e) => ReflashImage();
+        private void Button1_Click_1(object sender, EventArgs e) => RefreshImage();
     }
 }

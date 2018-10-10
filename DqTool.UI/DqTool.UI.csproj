@@ -120,6 +120,7 @@
     <Compile Include="Class\ScanPosition.cs" />
     <Compile Include="Class\HitPoint.cs" />
     <Compile Include="Class\MonsterData.cs" />
+    <Compile Include="Class\Battle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
