@@ -8,6 +8,7 @@ using System.Text;
 
 using DqTool.Core;
 using DqTool.Core.Extensions;
+using DqTool.UI.Resouces;
 
 namespace DqTool.UI.Class
 {
@@ -46,7 +47,7 @@ namespace DqTool.UI.Class
             canAutoHeal = true;
 
             _hitPoint = new HitPoint(mdata.Hp);
-            _hpGauge = new HpGauge(_hitPoint, ResouceManager.GetLocation(Name));
+            _hpGauge = new HpGauge(_hitPoint, ResouceManager.LoadLocation(Name));
             _hpGauge.Show();
         }
 

@@ -71,7 +71,6 @@
   <ItemGroup>
     <Compile Include="Class\Calc.cs" />
     <Compile Include="Class\Monster.cs" />
-    <Compile Include="Class\ResouceManager.cs" />
     <Compile Include="Views\SmoothProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -121,6 +120,8 @@
     <Compile Include="Class\HitPoint.cs" />
     <Compile Include="Class\MonsterData.cs" />
     <Compile Include="Class\Battle.cs" />
+    <Compile Include="Resources\ResouceManager.cs" />
+    <Compile Include="Resources\DashboardSetting.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -198,6 +199,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

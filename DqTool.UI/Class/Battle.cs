@@ -6,5 +6,7 @@ namespace DqTool.UI.Class
         public Battle()
         {
         }
+
+
     }
 }
