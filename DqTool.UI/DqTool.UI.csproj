@@ -124,6 +124,7 @@
     <Compile Include="Resources\DashboardSetting.cs" />
     <Compile Include="Class\GameLoop.cs" />
     <Compile Include="Class\Timer.cs" />
+    <Compile Include="Class\Serializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
