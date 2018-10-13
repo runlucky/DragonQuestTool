@@ -33,10 +33,15 @@ namespace DqTool.UI.Class
         private bool canHeal;
         private bool canAutoHeal;
 
+
+        private static readonly IEnumerable<MonsterData> MonsterList = Serializer<List<MonsterData>>.Deserialize("monsters.xml");
+        public static Monster Create(MonsterName name)
+        {
+            return null; //new Monster();
+        }
+
         public Monster(MonsterData mdata)
         {
-            var a = DateTime.Now;
-
             Name = mdata.Name;
             damageBmp = mdata.DamageBmp;
             healBmp = mdata.HealBmp;
