@@ -122,6 +122,7 @@
     <Compile Include="Class\Battle.cs" />
     <Compile Include="Resources\ResouceManager.cs" />
     <Compile Include="Resources\DashboardSetting.cs" />
+    <Compile Include="Class\GameLoop.cs" />
     <Compile Include="Class\Timer.cs" />
   </ItemGroup>
   <ItemGroup>
