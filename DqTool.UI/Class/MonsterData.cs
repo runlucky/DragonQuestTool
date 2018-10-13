@@ -17,6 +17,6 @@ namespace DqTool.UI.Class
         public Bitmap DamageBmp { get; }
         public Bitmap HealBmp { get; }
 
-
+        public ScanPosition ScanPosition { get; }
     }
 }
