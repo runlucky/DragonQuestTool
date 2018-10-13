@@ -35,12 +35,14 @@ namespace DqTool.UI.Class
 
         public Monster(MonsterData mdata)
         {
+            var a = DateTime.Now;
+
             Name = mdata.Name;
             damageBmp = mdata.DamageBmp;
             healBmp = mdata.HealBmp;
-            HealPoint = mdata.HealPoint;
+            HealPoint = mdata.Heal;
             Autoheal = mdata.Autoheal;
-            isDQ5 = mdata.IsDq5;
+            isDQ5 = mdata.Title == GameTitle.DQ5;
 
             canDamage = true;
             canHeal = true;

@@ -125,6 +125,7 @@
     <Compile Include="Class\GameLoop.cs" />
     <Compile Include="Class\Timer.cs" />
     <Compile Include="Class\Serializer.cs" />
+    <Compile Include="Class\Title.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
