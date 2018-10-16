@@ -118,7 +118,7 @@
     <Compile Include="Class\Scanner.cs" />
     <Compile Include="Class\ScanPosition.cs" />
     <Compile Include="Class\HitPoint.cs" />
-    <Compile Include="Class\MonsterData.cs" />
+    <Compile Include="Class\MonsterBreed.cs" />
     <Compile Include="Class\Battle.cs" />
     <Compile Include="Resources\ResouceManager.cs" />
     <Compile Include="Resources\DashboardSetting.cs" />
@@ -126,6 +126,7 @@
     <Compile Include="Class\Timer.cs" />
     <Compile Include="Class\Serializer.cs" />
     <Compile Include="Class\Title.cs" />
+    <None Include="Resources\Monsters.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

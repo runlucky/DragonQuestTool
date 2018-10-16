@@ -29,31 +29,26 @@ namespace DqTool.UI.Class
         public readonly Bitmap damageBmp;
         private readonly Bitmap healBmp;
         private readonly bool isDQ5;
-        private bool canDamage;
-        private bool canHeal;
-        private bool canAutoHeal;
+        private bool canDamage = true;
+        private bool canHeal = true;
+        private bool canAutoHeal = true;
 
+        private static readonly IEnumerable<MonsterBreed> MonsterList = Serializer<List<MonsterBreed>>.Deserialize("Resources\\Monsters.xml");
 
-        private static readonly IEnumerable<MonsterData> MonsterList = Serializer<List<MonsterData>>.Deserialize("monsters.xml");
         public static Monster Create(MonsterName name)
         {
-            return null; //new Monster();
+            return new Monster(MonsterList.FirstOrDefault(x => x.Name == name));
         }
 
-        public Monster(MonsterData mdata)
+        public Monster(MonsterBreed breed)
         {
-            Name = mdata.Name;
-            damageBmp = mdata.DamageBmp;
-            healBmp = mdata.HealBmp;
-            HealPoint = mdata.Heal;
-            Autoheal = mdata.Autoheal;
-            isDQ5 = mdata.Title == GameTitle.DQ5;
+            Name = breed.Name;
+            damageBmp = new Bitmap(breed.DamagePath);
+            healBmp = new Bitmap(breed.HealPath);
+            HealPoint = breed.Heal;
+            Autoheal = breed.AutoHeal;
 
-            canDamage = true;
-            canHeal = true;
-            canAutoHeal = true;
-
-            _hitPoint = new HitPoint(mdata.Hp);
+            _hitPoint = new HitPoint(breed.Hp);
             _hpGauge = new HpGauge(_hitPoint, ResouceManager.LoadLocation(Name));
             _hpGauge.Show();
         }
