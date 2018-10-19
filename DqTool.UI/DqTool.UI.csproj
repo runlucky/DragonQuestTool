@@ -70,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Calc.cs" />
-    <Compile Include="Class\Monster.cs" />
     <Compile Include="Views\SmoothProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -118,7 +117,6 @@
     <Compile Include="Class\Scanner.cs" />
     <Compile Include="Class\ScanPosition.cs" />
     <Compile Include="Class\HitPoint.cs" />
-    <Compile Include="Class\MonsterBreed.cs" />
     <Compile Include="Class\Battle.cs" />
     <Compile Include="Resources\ResouceManager.cs" />
     <Compile Include="Resources\DashboardSetting.cs" />
@@ -127,6 +125,9 @@
     <Compile Include="Class\Serializer.cs" />
     <Compile Include="Class\Title.cs" />
     <None Include="Resources\Monsters.xml" />
+    <Compile Include="Class\Monsters\Monster.cs" />
+    <Compile Include="Class\Monsters\MonsterBreed.cs" />
+    <Compile Include="Class\Monsters\MonsterCreater.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -206,6 +207,7 @@
   <ItemGroup />
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Class\Monsters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

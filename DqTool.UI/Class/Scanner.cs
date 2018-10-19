@@ -105,7 +105,7 @@ namespace DqTool.UI.Class
         /// </summary>
         private void Heal()
         {
-            foreach (var v in _monsters.Where(x => x.HealPoint != 0)) v.Heal(v.IsHeal(scan.Heal));
+            foreach (var v in _monsters.Where(x => x.Heal != 0)) v.Heal(v.IsHeal(scan.Heal));
         }
 
         private void EndBattle()
@@ -129,14 +129,14 @@ namespace DqTool.UI.Class
         /// <returns></returns>
         private MonsterName ScanMonsterName()
         {
-            //var name = new Rectangle(scan.Name, scan.NameSize).ToBitmap();
-            //foreach (var monster in monsterData)
-            //{
-            //    if (name.Equal(monster.Value.NameBmp)) return monster.Key;
-            //}
-            //name = new Rectangle(scan.Name.X + 32, scan.Name.Y - 16 * 8, 64, 32).ToBitmap();
-            //if (name.Equal(monsterData[MonsterName.Mirudo1].NameBmp)) return MonsterName.Mirudo1;
-            //if (name.Equal(monsterData[MonsterName.Mirudo2].NameBmp)) return MonsterName.Mirudo2;
+            var name = new Rectangle(scan.Name, scan.NameSize).ToBitmap();
+            foreach (var monster in monsterData)
+            {
+                if (name.Equal(monster.Value.NameBmp)) return monster.Key;
+            }
+            name = new Rectangle(scan.Name.X + 32, scan.Name.Y - 16 * 8, 64, 32).ToBitmap();
+            if (name.Equal(monsterData[MonsterName.Mirudo1].NameBmp)) return MonsterName.Mirudo1;
+            if (name.Equal(monsterData[MonsterName.Mirudo2].NameBmp)) return MonsterName.Mirudo2;
 
             return MonsterName.Unknown;
         }

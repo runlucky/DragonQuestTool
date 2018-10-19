@@ -5,7 +5,7 @@ using DqTool.Core;
 
 namespace DqTool.UI.Class
 {
-    public class MonsterBreed
+    public struct MonsterBreed
     {
         public MonsterName Name { get; set; }
         public GameTitle Title { get; set; }

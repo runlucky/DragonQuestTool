@@ -17,10 +17,22 @@ namespace DqTool.UI.Class
     /// </summary>
     public class Monster : IDisposable
     {
+        //public MonsterName Name { get; set; }
+        //public GameTitle Title { get; set; }
+
+        //public int Hp { get; set; }
+        //public int AutoHeal { get; set; }
+        //public int Heal { get; set; }
+
+        //public string NamePath { get; set; }
+        //public string DamagePath { get; set; }
+        //public string HealPath { get; set; }
+
+        //public ScanPosition ScanPosition { get; set; }
         public MonsterName Name { get; }
-        public int HealPoint { get; }
-        private int Autoheal { get; }
-        private bool HasAutoHeal => Autoheal != 0;
+        private readonly int _heal;
+        private readonly int _autoHeal;
+        private bool HasAutoHeal => _autoHeal != 0;
 
         private readonly HpGauge _hpGauge;
         private readonly HitPoint _hitPoint;
@@ -28,25 +40,25 @@ namespace DqTool.UI.Class
 
         public readonly Bitmap damageBmp;
         private readonly Bitmap healBmp;
-        private readonly bool isDQ5;
         private bool canDamage = true;
         private bool canHeal = true;
         private bool canAutoHeal = true;
 
         private static readonly IEnumerable<MonsterBreed> MonsterList = Serializer<List<MonsterBreed>>.Deserialize("Resources\\Monsters.xml");
 
-        public static Monster Create(MonsterName name)
+        public Monster(MonsterName name)
         {
-            return new Monster(MonsterList.FirstOrDefault(x => x.Name == name));
-        }
+            var aaa = new ScanPosition();
+            aaa.AutoHeal = new Point();
 
-        public Monster(MonsterBreed breed)
-        {
-            Name = breed.Name;
+            MonsterBreed breed = MonsterList.FirstOrDefault(x => x.Name == name);
+            breed.
+           Name = name;
             damageBmp = new Bitmap(breed.DamagePath);
             healBmp = new Bitmap(breed.HealPath);
-            HealPoint = breed.Heal;
-            Autoheal = breed.AutoHeal;
+            _heal = breed.Heal;
+            _autoHeal = breed.AutoHeal;
+            breed.ScanPosition;
 
             _hitPoint = new HitPoint(breed.Hp);
             _hpGauge = new HpGauge(_hitPoint, ResouceManager.LoadLocation(Name));
@@ -92,7 +104,7 @@ namespace DqTool.UI.Class
             }
             if (!canHeal) return;
             canHeal = false;
-            _hpGauge.Heal(HealPoint);
+            _hpGauge.Heal(_heal);
         }
 
         /// <summary>
@@ -110,7 +122,7 @@ namespace DqTool.UI.Class
                 case Phase.Command:
                     if (!canAutoHeal) return;
                     canAutoHeal = false;
-                    _hpGauge.Heal(Autoheal);
+                    _hpGauge.Heal(_autoHeal);
                     break;
             }
         }
