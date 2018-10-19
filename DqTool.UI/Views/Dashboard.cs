@@ -15,6 +15,7 @@ using DqTool.Core.Extensions;
 using DqTool.Core;
 using System.Diagnostics;
 using DqTool.UI.Class;
+using DqTool.UI.Resouces;
 
 namespace DqTool.UI
 {
@@ -28,13 +29,13 @@ namespace DqTool.UI
         {
             InitializeComponent();
 
-            var data = Properties.Settings.Default;
-            Location = data.MainPos;
-            tbWait.Text = data.Wait;
-            scanPosX.Value = data.ScanPos.X;
-            scanPosY.Value = data.ScanPos.Y;
+            var setting = ResouceManager.LoadDashboardSetting();
+            Location = setting.MainLocation;
+            tbWait.Text = setting.Wait;
+            scanPosX.Value = setting.ScanLocation.X;
+            scanPosY.Value = setting.ScanLocation.Y;
 
-            ReflashImage();
+            RefreshImage();
         }
 
         private async void OnScanButtonClick(object sender, EventArgs e)
@@ -66,19 +67,20 @@ namespace DqTool.UI
         {
             scanner.Dispose();
 
-            Properties.Settings.Default.MainPos = Location;
-            Properties.Settings.Default.Wait = tbWait.Text;
-            Properties.Settings.Default.ScanPos = ScanLocation;
-
-            Properties.Settings.Default.Save();
+            ResouceManager.SaveDashboardSetting(new DashboardSetting
+            {
+                MainLocation = Location,
+                Wait = tbWait.Text,
+                ScanLocation = ScanLocation
+            });
         }
 
-        private void ReflashImage() => pictureBox1.Image = scanner.ReScanImage(ScanLocation);
+        private void RefreshImage() => pictureBox1.Image = scanner.ReScanImage(ScanLocation);
 
-        private void ScanPosX_ValueChanged(object sender, EventArgs e) => ReflashImage();
+        private void ScanPosX_ValueChanged(object sender, EventArgs e) => RefreshImage();
 
-        private void ScanPosY_ValueChanged(object sender, EventArgs e) => ReflashImage();
+        private void ScanPosY_ValueChanged(object sender, EventArgs e) => RefreshImage();
 
-        private void Button1_Click_1(object sender, EventArgs e) => ReflashImage();
+        private void OnRefreshImageButtonClick(object sender, EventArgs e) => RefreshImage();
     }
 }

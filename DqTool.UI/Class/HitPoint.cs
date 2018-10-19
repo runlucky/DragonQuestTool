@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace DqTool.UI.Class
 {
-    public class HitPoint
+    public struct HitPoint
     {
         public int Now { get; private set; }
         private readonly int _max;

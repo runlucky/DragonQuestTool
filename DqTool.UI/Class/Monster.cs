@@ -8,6 +8,7 @@ using System.Text;
 
 using DqTool.Core;
 using DqTool.Core.Extensions;
+using DqTool.UI.Resouces;
 
 namespace DqTool.UI.Class
 {
@@ -28,25 +29,27 @@ namespace DqTool.UI.Class
         public readonly Bitmap damageBmp;
         private readonly Bitmap healBmp;
         private readonly bool isDQ5;
-        private bool canDamage;
-        private bool canHeal;
-        private bool canAutoHeal;
+        private bool canDamage = true;
+        private bool canHeal = true;
+        private bool canAutoHeal = true;
 
-        public Monster(MonsterData mdata)
+        private static readonly IEnumerable<MonsterBreed> MonsterList = Serializer<List<MonsterBreed>>.Deserialize("Resources\\Monsters.xml");
+
+        public static Monster Create(MonsterName name)
         {
-            Name = mdata.Name;
-            damageBmp = mdata.DamageBmp;
-            healBmp = mdata.HealBmp;
-            HealPoint = mdata.HealPoint;
-            Autoheal = mdata.Autoheal;
-            isDQ5 = mdata.IsDq5;
+            return new Monster(MonsterList.FirstOrDefault(x => x.Name == name));
+        }
 
-            canDamage = true;
-            canHeal = true;
-            canAutoHeal = true;
+        public Monster(MonsterBreed breed)
+        {
+            Name = breed.Name;
+            damageBmp = new Bitmap(breed.DamagePath);
+            healBmp = new Bitmap(breed.HealPath);
+            HealPoint = breed.Heal;
+            Autoheal = breed.AutoHeal;
 
-            _hitPoint = new HitPoint(mdata.Hp);
-            _hpGauge = new HpGauge(_hitPoint, ResouceManager.GetLocation(Name));
+            _hitPoint = new HitPoint(breed.Hp);
+            _hpGauge = new HpGauge(_hitPoint, ResouceManager.LoadLocation(Name));
             _hpGauge.Show();
         }
 

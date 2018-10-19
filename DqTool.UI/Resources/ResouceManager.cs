@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DqTool.UI.Class
+namespace DqTool.UI.Resouces
 {
     public static class ResouceManager
     {
-        public static Point GetLocation(MonsterName name)
+        public static Point LoadLocation(MonsterName name)
         {
             switch (name)
             {
@@ -49,5 +49,22 @@ namespace DqTool.UI.Class
             }
             Properties.Settings.Default.Save();
         }
+
+        public static DashboardSetting LoadDashboardSetting() => new DashboardSetting
+        {
+            MainLocation = Properties.Settings.Default.MainPos,
+            ScanLocation = Properties.Settings.Default.ScanPos,
+            Wait = Properties.Settings.Default.Wait
+        };
+
+        public static void SaveDashboardSetting(DashboardSetting setting) {
+            Properties.Settings.Default.MainPos = setting.MainLocation;
+            Properties.Settings.Default.Wait = setting.Wait;
+            Properties.Settings.Default.ScanPos = setting.ScanLocation;
+
+            Properties.Settings.Default.Save();
+        }
+
+
     }
 }

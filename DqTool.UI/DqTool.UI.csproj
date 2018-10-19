@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -71,7 +71,6 @@
   <ItemGroup>
     <Compile Include="Class\Calc.cs" />
     <Compile Include="Class\Monster.cs" />
-    <Compile Include="Class\ResouceManager.cs" />
     <Compile Include="Views\SmoothProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -119,7 +118,15 @@
     <Compile Include="Class\Scanner.cs" />
     <Compile Include="Class\ScanPosition.cs" />
     <Compile Include="Class\HitPoint.cs" />
-    <Compile Include="Class\MonsterData.cs" />
+    <Compile Include="Class\MonsterBreed.cs" />
+    <Compile Include="Class\Battle.cs" />
+    <Compile Include="Resources\ResouceManager.cs" />
+    <Compile Include="Resources\DashboardSetting.cs" />
+    <Compile Include="Class\GameLoop.cs" />
+    <Compile Include="Class\Timer.cs" />
+    <Compile Include="Class\Serializer.cs" />
+    <Compile Include="Class\Title.cs" />
+    <None Include="Resources\Monsters.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -197,6 +204,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
