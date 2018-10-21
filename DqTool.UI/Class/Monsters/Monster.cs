@@ -22,6 +22,8 @@ namespace DqTool.UI.Class
         private bool HasAutoHeal => _breed.AutoHeal != 0;
         public bool HasHeal => _breed.Heal != 0;
 
+        public MonsterName Name => _breed.Name;
+
         private readonly HpGauge _hpGauge;
         private readonly HitPoint _hitPoint;
         public bool IsDead => _hitPoint.Now == 0;
@@ -74,9 +76,9 @@ namespace DqTool.UI.Class
         /// <summary>
         /// 回復する
         /// </summary>
-        public void Heal(bool h)
+        public void Heal()
         {
-            if (!h)
+            if (!IsHeal())
             {
                 canHeal = true;
                 return;
@@ -87,12 +89,21 @@ namespace DqTool.UI.Class
         }
 
         /// <summary>
+        /// 回復行動をしているかどうかを取得する
+        /// </summary>
+        private bool IsHeal()
+        {
+            var scan = new Rectangle(_breed.ScanPosition.Heal, healBmp.Size).ToBitmap();
+            return healBmp.Equal(scan);
+        }
+
+        /// <summary>
         /// 自動回復
         /// </summary>
-        public void AutoHeal(Point scanPos)
+        public void AutoHeal()
         {
             if (!HasAutoHeal) return;
-            switch (Calc.GetPhase(new Rectangle(scanPos, new Size(16, 48)).ToBitmap()))
+            switch (Calc.GetPhase(new Rectangle(_breed.ScanPosition.AutoHeal, new Size(16, 48)).ToBitmap()))
             {
                 case Phase.Battle:
                     canAutoHeal = true;
@@ -106,14 +117,6 @@ namespace DqTool.UI.Class
             }
         }
 
-        /// <summary>
-        /// 回復行動をしているかどうかを取得する
-        /// </summary>
-        /// <param name="scanPos">テキスト欄の0,0の位置</param>
-        /// <returns></returns>
-        public bool IsHeal(Point scanPos)
-        {
-            return healBmp.Equal(new Rectangle(scanPos, healBmp.Size).ToBitmap());
-        }
+
     }
 }

@@ -10,5 +10,6 @@ namespace DqTool.UI.Class.Monsters
         private static readonly IEnumerable<MonsterBreed> _monsters = Serializer<List<MonsterBreed>>.Deserialize("Resources\\Monsters.xml");
 
         public static MonsterBreed GetBreed(MonsterName name) => _monsters.FirstOrDefault(x => x.Name == name);
+
     }
 }

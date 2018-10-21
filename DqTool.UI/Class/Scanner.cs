@@ -94,7 +94,7 @@ namespace DqTool.UI.Class
         /// </summary>
         private void Heal()
         {
-            foreach (var v in _monsters.Where(x => x.HasHeal)) v.Heal(v.IsHeal(scan.Heal));
+            foreach (var v in _monsters.Where(x => x.HasHeal)) v.Heal();
         }
 
         private void EndBattle()
@@ -109,7 +109,7 @@ namespace DqTool.UI.Class
         /// </summary>
         private void AutoHeal()
         {
-            foreach (var v in _monsters) v.AutoHeal(scan.AutoHeal);
+            foreach (var monster in _monsters) monster.AutoHeal();
         }
 
         /// <summary>
