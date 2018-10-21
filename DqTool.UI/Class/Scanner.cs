@@ -15,24 +15,13 @@ namespace DqTool.UI.Class
     {
         public bool shouldScanStop = false;
         private List<Monster> _monsters = new List<Monster>();
-        private ScanPosition scan;
+        private Point _basePoint;
         private readonly Stopwatch _stopWatch = new Stopwatch();
         private readonly BitmapConverter Converter = new BitmapConverter(Properties.Resources.number);
 
-        public static readonly Dictionary<MonsterName, MonsterBreed> monsterData = new Dictionary<MonsterName, MonsterBreed>()
-        {
-        };
-
         public void Init(Point basePoint)
         {
-            scan = new ScanPosition
-            {
-                Damage = new Point(basePoint.X, basePoint.Y),
-                Heal = new Point(basePoint.X, basePoint.Y - 32),
-                AutoHeal = new Point(basePoint.X, basePoint.Y - 16 * 18),
-                Name = new Point(basePoint.X + 16 * 9, basePoint.Y - 16 * 3),
-                NameSize = new Size(128, 32)
-            };
+            _basePoint = basePoint;
         }
 
         public async Task<int> ScanAsync(int wait)
@@ -69,16 +58,16 @@ namespace DqTool.UI.Class
             _monsters.ForEach(x => x.Dispose());
             _monsters.Clear();
 
-            _monsters.Add(new Monster(monsterData[name]));
+            _monsters.Add(new Monster(name));
 
             if (name == MonsterName.GenjinA)
             {
-                _monsters.Add(new Monster(monsterData[MonsterName.GenjinB]));
-                _monsters.Add(new Monster(monsterData[MonsterName.GenjinC]));
+                _monsters.Add(new Monster(MonsterName.GenjinB));
+                _monsters.Add(new Monster(MonsterName.GenjinC));
             }
             else if (name == MonsterName.BattlerA)
             {
-                _monsters.Add(new Monster(monsterData[MonsterName.BattlerB]));
+                _monsters.Add(new Monster(MonsterName.BattlerB));
             }
         }
 
@@ -105,7 +94,7 @@ namespace DqTool.UI.Class
         /// </summary>
         private void Heal()
         {
-            foreach (var v in _monsters.Where(x => x.Heal != 0)) v.Heal(v.IsHeal(scan.Heal));
+            foreach (var v in _monsters.Where(x => x.HasHeal)) v.Heal(v.IsHeal(scan.Heal));
         }
 
         private void EndBattle()
