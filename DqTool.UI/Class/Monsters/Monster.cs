@@ -34,9 +34,12 @@ namespace DqTool.UI.Class
         private bool canHeal = true;
         private bool canAutoHeal = true;
 
+        private IScanner _scanner;
 
-        public Monster(MonsterName name)
+        public Monster(IScanner scanner, MonsterName name)
         {
+            _scanner = scanner;
+
             _breed = MonsterList.GetBreed(name);
             damageBmp = new Bitmap(_breed.DamagePath);
             healBmp = new Bitmap(_breed.HealPath);

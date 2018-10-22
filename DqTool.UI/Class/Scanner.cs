@@ -11,7 +11,7 @@ using static DqTool.UI.Class.Monster;
 
 namespace DqTool.UI.Class
 {
-    public class Scanner : IDisposable
+    public class Scanner : IDisposable, IScanner
     {
         public bool shouldScanStop = false;
         private List<Monster> _monsters = new List<Monster>();
@@ -58,16 +58,16 @@ namespace DqTool.UI.Class
             _monsters.ForEach(x => x.Dispose());
             _monsters.Clear();
 
-            _monsters.Add(new Monster(name));
+            _monsters.Add(GetMonster(name));
 
             if (name == MonsterName.GenjinA)
             {
-                _monsters.Add(new Monster(MonsterName.GenjinB));
-                _monsters.Add(new Monster(MonsterName.GenjinC));
+                _monsters.Add(GetMonster(MonsterName.GenjinB));
+                _monsters.Add(GetMonster(MonsterName.GenjinC));
             }
             else if (name == MonsterName.BattlerA)
             {
-                _monsters.Add(new Monster(MonsterName.BattlerB));
+                _monsters.Add(GetMonster(MonsterName.BattlerB));
             }
         }
 
@@ -197,6 +197,11 @@ namespace DqTool.UI.Class
                 num += tempNum;
             }
             return num;
+        }
+
+        private Monster GetMonster(MonsterName name)
+        {
+            return new Monster(DIContainer.Resolver.Resolve<IScanner>(), name);
         }
     }
 }
