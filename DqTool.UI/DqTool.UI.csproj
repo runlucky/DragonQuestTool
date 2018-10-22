@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resouces\icon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Images\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
@@ -74,6 +74,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Calc.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\SmoothProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -98,15 +103,10 @@
       <DependentUpon>HpGauge.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -126,7 +126,7 @@
     <Compile Include="Class\GameLoop.cs" />
     <Compile Include="Class\Timer.cs" />
     <Compile Include="Class\Serializer.cs" />
-    <None Include="Resources\Monsters.xml" />
+    <EmbeddedResource Include="Resources\DQ5Monsters.xml" />
     <Compile Include="Class\Monsters\Monster.cs" />
     <Compile Include="Class\Monsters\MonsterList.cs" />
     <Compile Include="Model\MonsterBreed.cs" />
@@ -138,58 +138,58 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resouces\01_oyabun1.PNG" />
-    <Content Include="Resouces\01_oyabun2.PNG" />
-    <Content Include="Resouces\02_zairu1.PNG" />
-    <Content Include="Resouces\02_zairu2.PNG" />
-    <Content Include="Resouces\02_zairu3.PNG" />
-    <Content Include="Resouces\03_joou1.PNG" />
-    <Content Include="Resouces\03_joou2.PNG" />
-    <Content Include="Resouces\03_joou3.PNG" />
-    <Content Include="Resouces\04_taikou1.png" />
-    <Content Include="Resouces\04_taikou2.png" />
-    <Content Include="Resouces\05_genjin1.PNG" />
-    <Content Include="Resouces\05_genjinA.PNG" />
-    <Content Include="Resouces\05_genjinB.PNG" />
-    <Content Include="Resouces\05_genjinC.PNG" />
-    <Content Include="Resouces\06_kandata1.PNG" />
-    <Content Include="Resouces\06_kandata2.PNG" />
-    <Content Include="Resouces\06_kandata3.PNG" />
-    <Content Include="Resouces\07_oku1.PNG" />
-    <Content Include="Resouces\07_oku2.PNG" />
-    <Content Include="Resouces\08_kimera1.PNG" />
-    <Content Include="Resouces\08_kimera2.PNG" />
-    <Content Include="Resouces\08_kimera3.PNG" />
-    <Content Include="Resouces\09_jami1.PNG" />
-    <Content Include="Resouces\09_jami2.PNG" />
-    <Content Include="Resouces\09_jami3.PNG" />
-    <Content Include="Resouces\10_kobun1.PNG" />
-    <Content Include="Resouces\10_kobun2.PNG" />
-    <Content Include="Resouces\11_gonzu1.PNG" />
-    <Content Include="Resouces\11_gonzu2.PNG" />
-    <Content Include="Resouces\12_gema1.PNG" />
-    <Content Include="Resouces\12_gema2.PNG" />
-    <Content Include="Resouces\13_ramada1.PNG" />
-    <Content Include="Resouces\13_ramada2.PNG" />
-    <Content Include="Resouces\14_iburu1.PNG" />
-    <Content Include="Resouces\14_iburu2.PNG" />
-    <Content Include="Resouces\15_buon1.PNG" />
-    <Content Include="Resouces\15_buon2.PNG" />
-    <Content Include="Resouces\16_hell1.PNG" />
-    <Content Include="Resouces\16_hellA.PNG" />
-    <Content Include="Resouces\16_hellB.PNG" />
-    <Content Include="Resouces\17_mirudo1a.png" />
-    <Content Include="Resouces\17_mirudo1b.png" />
-    <Content Include="Resouces\17_mirudo2.PNG" />
-    <Content Include="Resouces\17_mirudo3.PNG" />
-    <Content Include="Resouces\H1.PNG" />
-    <Content Include="Resouces\H2.PNG" />
-    <Content Include="Resouces\H3.PNG" />
-    <Content Include="Resouces\HM1.png" />
-    <Content Include="Resouces\HM2.png" />
-    <Content Include="Resouces\HM3.png" />
-    <Content Include="Resouces\icon.ico" />
-    <Content Include="Resouces\number.bmp" />
+    <Content Include="Resources\Images\01_oyabun1.PNG" />
+    <Content Include="Resources\Images\01_oyabun2.PNG" />
+    <Content Include="Resources\Images\02_zairu1.PNG" />
+    <Content Include="Resources\Images\02_zairu2.PNG" />
+    <Content Include="Resources\Images\02_zairu3.PNG" />
+    <Content Include="Resources\Images\03_joou1.PNG" />
+    <Content Include="Resources\Images\03_joou2.PNG" />
+    <Content Include="Resources\Images\03_joou3.PNG" />
+    <Content Include="Resources\Images\04_taikou1.png" />
+    <Content Include="Resources\Images\04_taikou2.png" />
+    <Content Include="Resources\Images\05_genjin1.PNG" />
+    <Content Include="Resources\Images\05_genjinA.PNG" />
+    <Content Include="Resources\Images\05_genjinB.PNG" />
+    <Content Include="Resources\Images\05_genjinC.PNG" />
+    <Content Include="Resources\Images\06_kandata1.PNG" />
+    <Content Include="Resources\Images\06_kandata2.PNG" />
+    <Content Include="Resources\Images\06_kandata3.PNG" />
+    <Content Include="Resources\Images\07_oku1.PNG" />
+    <Content Include="Resources\Images\07_oku2.PNG" />
+    <Content Include="Resources\Images\08_kimera1.PNG" />
+    <Content Include="Resources\Images\08_kimera2.PNG" />
+    <Content Include="Resources\Images\08_kimera3.PNG" />
+    <Content Include="Resources\Images\09_jami1.PNG" />
+    <Content Include="Resources\Images\09_jami2.PNG" />
+    <Content Include="Resources\Images\09_jami3.PNG" />
+    <Content Include="Resources\Images\10_kobun1.PNG" />
+    <Content Include="Resources\Images\10_kobun2.PNG" />
+    <Content Include="Resources\Images\11_gonzu1.PNG" />
+    <Content Include="Resources\Images\11_gonzu2.PNG" />
+    <Content Include="Resources\Images\12_gema1.PNG" />
+    <Content Include="Resources\Images\12_gema2.PNG" />
+    <Content Include="Resources\Images\13_ramada1.PNG" />
+    <Content Include="Resources\Images\13_ramada2.PNG" />
+    <Content Include="Resources\Images\14_iburu1.PNG" />
+    <Content Include="Resources\Images\14_iburu2.PNG" />
+    <Content Include="Resources\Images\15_buon1.PNG" />
+    <Content Include="Resources\Images\15_buon2.PNG" />
+    <Content Include="Resources\Images\16_hell1.PNG" />
+    <Content Include="Resources\Images\16_hellA.PNG" />
+    <Content Include="Resources\Images\16_hellB.PNG" />
+    <Content Include="Resources\Images\17_mirudo1a.png" />
+    <Content Include="Resources\Images\17_mirudo1b.png" />
+    <Content Include="Resources\Images\17_mirudo2.PNG" />
+    <Content Include="Resources\Images\17_mirudo3.PNG" />
+    <Content Include="Resources\Images\H1.PNG" />
+    <Content Include="Resources\Images\H2.PNG" />
+    <Content Include="Resources\Images\H3.PNG" />
+    <Content Include="Resources\Images\HM1.png" />
+    <Content Include="Resources\Images\HM2.png" />
+    <Content Include="Resources\Images\HM3.png" />
+    <Content Include="Resources\Images\icon.ico" />
+    <Content Include="Resources\Images\number.bmp" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -211,9 +211,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

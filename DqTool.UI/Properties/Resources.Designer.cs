@@ -22,7 +22,7 @@ namespace DqTool.UI.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace DqTool.UI.Properties {
         ///   このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DqTool.UI.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace DqTool.UI.Properties {
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _01_oyabun1 {
+        public static System.Drawing.Bitmap _01_oyabun1 {
             get {
                 object obj = ResourceManager.GetObject("_01_oyabun1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _01_oyabun2 {
+        public static System.Drawing.Bitmap _01_oyabun2 {
             get {
                 object obj = ResourceManager.GetObject("_01_oyabun2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _02_zairu1 {
+        public static System.Drawing.Bitmap _02_zairu1 {
             get {
                 object obj = ResourceManager.GetObject("_02_zairu1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _02_zairu2 {
+        public static System.Drawing.Bitmap _02_zairu2 {
             get {
                 object obj = ResourceManager.GetObject("_02_zairu2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _02_zairu3 {
+        public static System.Drawing.Bitmap _02_zairu3 {
             get {
                 object obj = ResourceManager.GetObject("_02_zairu3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _03_joou1 {
+        public static System.Drawing.Bitmap _03_joou1 {
             get {
                 object obj = ResourceManager.GetObject("_03_joou1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _03_joou2 {
+        public static System.Drawing.Bitmap _03_joou2 {
             get {
                 object obj = ResourceManager.GetObject("_03_joou2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _03_joou3 {
+        public static System.Drawing.Bitmap _03_joou3 {
             get {
                 object obj = ResourceManager.GetObject("_03_joou3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _04_taikou1 {
+        public static System.Drawing.Bitmap _04_taikou1 {
             get {
                 object obj = ResourceManager.GetObject("_04_taikou1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _04_taikou2 {
+        public static System.Drawing.Bitmap _04_taikou2 {
             get {
                 object obj = ResourceManager.GetObject("_04_taikou2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +163,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _05_genjin1 {
+        public static System.Drawing.Bitmap _05_genjin1 {
             get {
                 object obj = ResourceManager.GetObject("_05_genjin1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +173,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _05_genjinA {
+        public static System.Drawing.Bitmap _05_genjinA {
             get {
                 object obj = ResourceManager.GetObject("_05_genjinA", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +183,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _05_genjinB {
+        public static System.Drawing.Bitmap _05_genjinB {
             get {
                 object obj = ResourceManager.GetObject("_05_genjinB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +193,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _05_genjinC {
+        public static System.Drawing.Bitmap _05_genjinC {
             get {
                 object obj = ResourceManager.GetObject("_05_genjinC", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +203,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _06_kandata1 {
+        public static System.Drawing.Bitmap _06_kandata1 {
             get {
                 object obj = ResourceManager.GetObject("_06_kandata1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +213,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _06_kandata2 {
+        public static System.Drawing.Bitmap _06_kandata2 {
             get {
                 object obj = ResourceManager.GetObject("_06_kandata2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +223,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _06_kandata3 {
+        public static System.Drawing.Bitmap _06_kandata3 {
             get {
                 object obj = ResourceManager.GetObject("_06_kandata3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,7 +233,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _07_oku1 {
+        public static System.Drawing.Bitmap _07_oku1 {
             get {
                 object obj = ResourceManager.GetObject("_07_oku1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -243,7 +243,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _07_oku2 {
+        public static System.Drawing.Bitmap _07_oku2 {
             get {
                 object obj = ResourceManager.GetObject("_07_oku2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -253,7 +253,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _08_kimera1 {
+        public static System.Drawing.Bitmap _08_kimera1 {
             get {
                 object obj = ResourceManager.GetObject("_08_kimera1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -263,7 +263,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _08_kimera2 {
+        public static System.Drawing.Bitmap _08_kimera2 {
             get {
                 object obj = ResourceManager.GetObject("_08_kimera2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -273,7 +273,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _08_kimera3 {
+        public static System.Drawing.Bitmap _08_kimera3 {
             get {
                 object obj = ResourceManager.GetObject("_08_kimera3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -283,7 +283,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _09_jami1 {
+        public static System.Drawing.Bitmap _09_jami1 {
             get {
                 object obj = ResourceManager.GetObject("_09_jami1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -293,7 +293,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _09_jami2 {
+        public static System.Drawing.Bitmap _09_jami2 {
             get {
                 object obj = ResourceManager.GetObject("_09_jami2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -303,7 +303,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _09_jami3 {
+        public static System.Drawing.Bitmap _09_jami3 {
             get {
                 object obj = ResourceManager.GetObject("_09_jami3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -313,7 +313,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _10_kobun1 {
+        public static System.Drawing.Bitmap _10_kobun1 {
             get {
                 object obj = ResourceManager.GetObject("_10_kobun1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -323,7 +323,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _10_kobun2 {
+        public static System.Drawing.Bitmap _10_kobun2 {
             get {
                 object obj = ResourceManager.GetObject("_10_kobun2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -333,7 +333,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _11_gonzu1 {
+        public static System.Drawing.Bitmap _11_gonzu1 {
             get {
                 object obj = ResourceManager.GetObject("_11_gonzu1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -343,7 +343,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _11_gonzu2 {
+        public static System.Drawing.Bitmap _11_gonzu2 {
             get {
                 object obj = ResourceManager.GetObject("_11_gonzu2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -353,7 +353,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _12_gema1 {
+        public static System.Drawing.Bitmap _12_gema1 {
             get {
                 object obj = ResourceManager.GetObject("_12_gema1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -363,7 +363,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _12_gema2 {
+        public static System.Drawing.Bitmap _12_gema2 {
             get {
                 object obj = ResourceManager.GetObject("_12_gema2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -373,7 +373,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _13_ramada1 {
+        public static System.Drawing.Bitmap _13_ramada1 {
             get {
                 object obj = ResourceManager.GetObject("_13_ramada1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -383,7 +383,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _13_ramada2 {
+        public static System.Drawing.Bitmap _13_ramada2 {
             get {
                 object obj = ResourceManager.GetObject("_13_ramada2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -393,7 +393,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _14_iburu1 {
+        public static System.Drawing.Bitmap _14_iburu1 {
             get {
                 object obj = ResourceManager.GetObject("_14_iburu1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -403,7 +403,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _14_iburu2 {
+        public static System.Drawing.Bitmap _14_iburu2 {
             get {
                 object obj = ResourceManager.GetObject("_14_iburu2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -413,7 +413,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _15_buon1 {
+        public static System.Drawing.Bitmap _15_buon1 {
             get {
                 object obj = ResourceManager.GetObject("_15_buon1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -423,7 +423,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _15_buon2 {
+        public static System.Drawing.Bitmap _15_buon2 {
             get {
                 object obj = ResourceManager.GetObject("_15_buon2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -433,7 +433,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _16_hell1 {
+        public static System.Drawing.Bitmap _16_hell1 {
             get {
                 object obj = ResourceManager.GetObject("_16_hell1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -443,7 +443,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _16_hellA {
+        public static System.Drawing.Bitmap _16_hellA {
             get {
                 object obj = ResourceManager.GetObject("_16_hellA", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -453,7 +453,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _16_hellB {
+        public static System.Drawing.Bitmap _16_hellB {
             get {
                 object obj = ResourceManager.GetObject("_16_hellB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -463,7 +463,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _17_mirudo1a {
+        public static System.Drawing.Bitmap _17_mirudo1a {
             get {
                 object obj = ResourceManager.GetObject("_17_mirudo1a", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -473,7 +473,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _17_mirudo1b {
+        public static System.Drawing.Bitmap _17_mirudo1b {
             get {
                 object obj = ResourceManager.GetObject("_17_mirudo1b", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -483,7 +483,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _17_mirudo2 {
+        public static System.Drawing.Bitmap _17_mirudo2 {
             get {
                 object obj = ResourceManager.GetObject("_17_mirudo2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -493,7 +493,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap _17_mirudo3 {
+        public static System.Drawing.Bitmap _17_mirudo3 {
             get {
                 object obj = ResourceManager.GetObject("_17_mirudo3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -503,7 +503,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap H1 {
+        public static System.Drawing.Bitmap H1 {
             get {
                 object obj = ResourceManager.GetObject("H1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -513,7 +513,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap H2 {
+        public static System.Drawing.Bitmap H2 {
             get {
                 object obj = ResourceManager.GetObject("H2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -523,7 +523,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap H3 {
+        public static System.Drawing.Bitmap H3 {
             get {
                 object obj = ResourceManager.GetObject("H3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -533,7 +533,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap HM1 {
+        public static System.Drawing.Bitmap HM1 {
             get {
                 object obj = ResourceManager.GetObject("HM1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -543,7 +543,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap HM2 {
+        public static System.Drawing.Bitmap HM2 {
             get {
                 object obj = ResourceManager.GetObject("HM2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -553,7 +553,7 @@ namespace DqTool.UI.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap HM3 {
+        public static System.Drawing.Bitmap HM3 {
             get {
                 object obj = ResourceManager.GetObject("HM3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -561,9 +561,19 @@ namespace DqTool.UI.Properties {
         }
         
         /// <summary>
+        ///   (アイコン) に類似した型 System.Drawing.Icon のローカライズされたリソースを検索します。
+        /// </summary>
+        public static System.Drawing.Icon icon {
+            get {
+                object obj = ResourceManager.GetObject("icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap number {
+        public static System.Drawing.Bitmap number {
             get {
                 object obj = ResourceManager.GetObject("number", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
