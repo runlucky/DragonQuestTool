@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using DqTool.Core;
+using DqTool.Core.Extensions;
 
 namespace DqTool.UI.Class
 {
@@ -19,5 +20,8 @@ namespace DqTool.UI.Class
         public string HealPath { get; set; }
 
         public ScanPosition ScanPosition { get; set; }
+        private Bitmap ScanName => ScanPosition.NameImage;
+
+        public bool Exists() => ScanName.Equal(new Bitmap(NamePath));
     }
 }

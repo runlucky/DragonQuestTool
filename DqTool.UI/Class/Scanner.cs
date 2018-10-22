@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DqTool.Core;
 using DqTool.Core.Extensions;
+using DqTool.UI.Class.Monsters;
 using static DqTool.UI.Class.Monster;
 
 namespace DqTool.UI.Class
@@ -52,7 +53,7 @@ namespace DqTool.UI.Class
         /// </summary>
         private void CreateMonster()
         {
-            var name = ScanMonsterName();
+            var name = MonsterList.ScanMonsterName();
             if (!CanCreateMonster(name)) return;
 
             _monsters.ForEach(x => x.Dispose());
@@ -112,23 +113,7 @@ namespace DqTool.UI.Class
             foreach (var monster in _monsters) monster.AutoHeal();
         }
 
-        /// <summary>
-        /// ミルドラースの場合はスキャン位置が違う
-        /// </summary>
-        /// <returns></returns>
-        private MonsterName ScanMonsterName()
-        {
-            var name = new Rectangle(scan.Name, scan.NameSize).ToBitmap();
-            foreach (var monster in monsterData)
-            {
-                if (name.Equal(monster.Value.NameBmp)) return monster.Key;
-            }
-            name = new Rectangle(scan.Name.X + 32, scan.Name.Y - 16 * 8, 64, 32).ToBitmap();
-            if (name.Equal(monsterData[MonsterName.Mirudo1].NameBmp)) return MonsterName.Mirudo1;
-            if (name.Equal(monsterData[MonsterName.Mirudo2].NameBmp)) return MonsterName.Mirudo2;
 
-            return MonsterName.Unknown;
-        }
 
         /// <summary>
         /// ダメージ処理を行う
@@ -137,7 +122,7 @@ namespace DqTool.UI.Class
         {
             foreach (var monster in _monsters)
             {
-                monster.Damage(GetDamage(scan.Damage, monster.damageBmp));
+                monster.Damage(GetDamage(monster));
                 if (monster.IsDead)
                 {
                     if (monster.Name == MonsterName.Mirudo1 || monster.Name == MonsterName.Mirudo2)
@@ -165,24 +150,26 @@ namespace DqTool.UI.Class
         /// </summary>
         /// <param name="scanPos">最上位桁目の数値の座標</param>
         /// <returns></returns>
-        public int GetDamage(Point scanPos, Bitmap damageBmp)
+        public int GetDamage(Monster monster)
         {
-            var rect = new Rectangle(scanPos, new Size(damageBmp.Width, damageBmp.Height + 32));
+            var damageBmp = monster.damageBmp;
+
+            var rect = new Rectangle(_basePoint, new Size(damageBmp.Width, damageBmp.Height + 32));
             var monsterName = rect.ToBitmap();
 
             rect.Location = new Point(0, 0);
             rect.Height -= 32;
             if (!damageBmp.Equal(monsterName.Clone(rect, monsterName.PixelFormat)))
             {
-                scanPos.Y += 32;
+                _basePoint.Y += 32;
                 rect.Y += 32;
                 if (!damageBmp.Equal(monsterName.Clone(rect, monsterName.PixelFormat))) return -1;
             }
 
-            scanPos.X += damageBmp.Width + 16;
-            scanPos.Y += 16;
+            _basePoint.X += damageBmp.Width + 16;
+            _basePoint.Y += 16;
 
-            var numBmp = new Rectangle(scanPos, new Size(16 * 4, 16)).ToBitmap();
+            var numBmp = new Rectangle(_basePoint, new Size(16 * 4, 16)).ToBitmap();
             var scanSize = new Rectangle(0, 0, 16, 16);
 
             var num = Converter.ToInt(numBmp.Clone(scanSize, numBmp.PixelFormat)) ?? -1;

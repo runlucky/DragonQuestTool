@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using DqTool.Core.Extensions;
 
 namespace DqTool.UI.Class
 {
@@ -10,5 +11,7 @@ namespace DqTool.UI.Class
         public Point Heal { get; set; }
         public Point AutoHeal { get; set; }
         public Size NameSize { get; set; }
+        private Rectangle NameRectangle => new Rectangle(Name, NameSize);
+        public Bitmap NameImage => NameRectangle.ToBitmap();
     }
 }
