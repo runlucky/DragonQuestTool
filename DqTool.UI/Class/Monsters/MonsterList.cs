@@ -12,11 +12,11 @@ namespace DqTool.UI.Class.Monsters
     {
         private static readonly ScanPosition _dq5Position = new ScanPosition
         {
-            AutoHeal = new Point(0, 0),
+            Name = new Point(16 * 9, -16 * 3),
             Damage = new Point(0, 0),
-            Heal = new Point(0, 0),
-            Name = new Point(0, 0),
-            NameSize = new Size(0, 0)
+            Heal = new Point(0, -32),
+            AutoHeal = new Point(0, -16 * 18),
+            NameSize = new Size(128, 32)
         };
 
         private static MonsterBreed DQ5(MonsterName name, int hp, int autoHeal, Bitmap nameImage, Bitmap damage, int heal = 0, Bitmap healImage = null)
@@ -49,6 +49,10 @@ namespace DqTool.UI.Class.Monsters
         };
         public static MonsterBreed GetBreed(MonsterName name) => _monsters.FirstOrDefault(x => x.Name == name);
 
-        public static MonsterName ScanMonsterName() => _monsters.FirstOrDefault(x => x.Exists()).Name;
+        public static MonsterName ScanMonsterName()
+        {
+            var monster = _monsters.FirstOrDefault(x => x.Exists());
+            return monster.Name;
+        }
     }
 }

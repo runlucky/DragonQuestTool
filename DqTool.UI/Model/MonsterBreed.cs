@@ -22,7 +22,7 @@ namespace DqTool.UI.Class
         public ScanPosition ScanPosition { get; set; }
         private Bitmap ScanName => ScanPosition.NameImage;
 
-        public bool Exists() => ScanName.Equal(new Bitmap(NameImage));
+        public bool Exists() => ScanName.Equal(NameImage);
 
         public MonsterBreed(GameTitle title, MonsterName name, int hp, int autoHeal, int heal, Bitmap nameImage, Bitmap damage, Bitmap healImage, ScanPosition position)
         {
