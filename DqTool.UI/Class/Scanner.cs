@@ -152,7 +152,7 @@ namespace DqTool.UI.Class
         /// <returns></returns>
         public int GetDamage(Monster monster)
         {
-            var damageBmp = monster.damageBmp;
+            var damageBmp = monster.DamageImage;
 
             var rect = new Rectangle(_basePoint, new Size(damageBmp.Width, damageBmp.Height + 32));
             var monsterName = rect.ToBitmap();

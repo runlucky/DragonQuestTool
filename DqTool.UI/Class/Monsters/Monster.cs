@@ -28,8 +28,7 @@ namespace DqTool.UI.Class
         private readonly HitPoint _hitPoint;
         public bool IsDead => _hitPoint.Now == 0;
 
-        public readonly Bitmap damageBmp;
-        private readonly Bitmap healBmp;
+        public Bitmap DamageImage => _breed.DamageImage;
         private bool canDamage = true;
         private bool canHeal = true;
         private bool canAutoHeal = true;
@@ -39,10 +38,7 @@ namespace DqTool.UI.Class
         public Monster(IScanner scanner, MonsterName name)
         {
             _scanner = scanner;
-
             _breed = MonsterList.GetBreed(name);
-            damageBmp = new Bitmap(_breed.DamagePath);
-            healBmp = new Bitmap(_breed.HealPath);
 
             _hitPoint = new HitPoint(_breed.Hp);
             _hpGauge = new HpGauge(_hitPoint, ResouceManager.LoadLocation(name));
@@ -96,8 +92,8 @@ namespace DqTool.UI.Class
         /// </summary>
         private bool IsHeal()
         {
-            var scan = new Rectangle(_breed.ScanPosition.Heal, healBmp.Size).ToBitmap();
-            return healBmp.Equal(scan);
+            var scan = new Rectangle(_breed.ScanPosition.Heal, _breed.HealImage.Size).ToBitmap();
+            return _breed.HealImage.Equal(scan);
         }
 
         /// <summary>

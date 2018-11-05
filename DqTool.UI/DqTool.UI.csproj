@@ -126,7 +126,6 @@
     <Compile Include="Class\GameLoop.cs" />
     <Compile Include="Class\Timer.cs" />
     <Compile Include="Class\Serializer.cs" />
-    <EmbeddedResource Include="Resources\DQ5Monsters.xml" />
     <Compile Include="Class\Monsters\Monster.cs" />
     <Compile Include="Class\Monsters\MonsterList.cs" />
     <Compile Include="Model\MonsterBreed.cs" />
