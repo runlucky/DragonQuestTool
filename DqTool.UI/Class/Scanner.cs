@@ -188,7 +188,7 @@ namespace DqTool.UI.Class
 
         private Monster GetMonster(MonsterName name)
         {
-            return new Monster(DIContainer.Resolver.Resolve<IScanner>(), name);
+            return new Monster(DIContainer.Resolver.Resolve<IScanner>(), name, _basePoint);
         }
     }
 }

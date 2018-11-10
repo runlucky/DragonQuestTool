@@ -35,10 +35,11 @@ namespace DqTool.UI.Class
 
         private IScanner _scanner;
 
-        public Monster(IScanner scanner, MonsterName name)
+        public Monster(IScanner scanner, MonsterName name, Point basePoint)
         {
             _scanner = scanner;
             _breed = MonsterList.GetBreed(name);
+            basePoint;
 
             _hitPoint = new HitPoint(_breed.Hp);
             _hpGauge = new HpGauge(_hitPoint, ResouceManager.LoadLocation(name));
@@ -115,7 +116,5 @@ namespace DqTool.UI.Class
                     break;
             }
         }
-
-
     }
 }
