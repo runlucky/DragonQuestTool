@@ -19,6 +19,7 @@ namespace DqTool.UI.Class
     public class Monster : IDisposable
     {
         private MonsterBreed _breed;
+        private Point _basePoint;
         private bool HasAutoHeal => _breed.AutoHeal != 0;
         public bool HasHeal => _breed.Heal != 0;
 
@@ -39,7 +40,7 @@ namespace DqTool.UI.Class
         {
             _scanner = scanner;
             _breed = MonsterList.GetBreed(name);
-            basePoint;
+            _basePoint = basePoint;
 
             _hitPoint = new HitPoint(_breed.Hp);
             _hpGauge = new HpGauge(_hitPoint, ResouceManager.LoadLocation(name));
