@@ -36,6 +36,11 @@ namespace DqTool.UI.Class
 
         private IScanner _scanner;
 
+        //private Bitmap ScanName => ScanPosition.NameImage;
+
+        //public bool Exists() => ScanName.Equal(NameImage);
+
+
         public Monster(IScanner scanner, MonsterName name, Point basePoint)
         {
             _scanner = scanner;
