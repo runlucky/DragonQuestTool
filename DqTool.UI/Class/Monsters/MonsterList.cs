@@ -24,7 +24,7 @@ namespace DqTool.UI.Class.Monsters
             return new MonsterBreed(GameTitle.DQ5, name, hp, autoHeal, heal, nameImage, damage, healImage, _dq5Position);
         }
 
-        private static readonly IEnumerable<MonsterBreed> _monsters = new List<MonsterBreed> {
+        private static readonly IEnumerable<MonsterBreed> _breeds = new List<MonsterBreed> {
             DQ5(MonsterName.Oyabun  ,  200,  0, Resources._01_oyabun1 , Resources._01_oyabun2),
             DQ5(MonsterName.Taikou  ,  350,  0, Resources._04_taikou1 , Resources._04_taikou2),
             DQ5(MonsterName.GenjinA ,  400,  0, Resources._05_genjin1 , Resources._05_genjinA),
@@ -47,12 +47,12 @@ namespace DqTool.UI.Class.Monsters
             DQ5(MonsterName.Jami    ,  820,  0, Resources._09_jami1   , Resources._09_jami2   , 820, Resources._09_jami3   ),
             DQ5(MonsterName.Mirudo2 , 4500,  0, Resources._17_mirudo1b, Resources._17_mirudo2 , 500, Resources._17_mirudo3 )
         };
-        public static MonsterBreed GetBreed(MonsterName name) => _monsters.FirstOrDefault(x => x.Name == name);
+        public static MonsterBreed GetBreed(MonsterName name) => _breeds.FirstOrDefault(x => x.Name == name);
 
         public static MonsterName ScanMonsterName()
         {
-            var monster = _monsters.FirstOrDefault(x => x.Exists());
-            return monster.Name;
+            var breed = _breeds.FirstOrDefault(x => x.Exists());
+            return breed.Name;
         }
     }
 }
