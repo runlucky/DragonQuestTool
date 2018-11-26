@@ -51,7 +51,7 @@ namespace DqTool.UI.Class
         /// </summary>
         private void CreateMonster()
         {
-            var name = MonsterList.ScanMonsterName();
+            var name = MonsterList.ScanMonsterName(_basePoint);
             if (!CanCreateMonster(name)) return;
 
             _monsters.ForEach(x => x.Dispose());

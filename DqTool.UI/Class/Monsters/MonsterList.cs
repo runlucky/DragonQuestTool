@@ -49,9 +49,13 @@ namespace DqTool.UI.Class.Monsters
         };
         public static MonsterBreed GetBreed(MonsterName name) => _breeds.FirstOrDefault(x => x.Name == name);
 
-        public static MonsterName ScanMonsterName()
+        public static MonsterName ScanMonsterName(Point basePoint)
         {
-            var breed = _breeds.FirstOrDefault(x => x.Exists());
+
+            var breed = _breeds.FirstOrDefault(x =>
+            {
+                return true;
+            });
             return breed.Name;
         }
     }

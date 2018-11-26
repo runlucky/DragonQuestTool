@@ -13,5 +13,6 @@ namespace DqTool.UI.Class
         public Size NameSize { get; set; }
         private Rectangle NameRectangle => new Rectangle(Name, NameSize);
         public Bitmap NameImage => NameRectangle.ToBitmap();
+        ↑これは低レイヤーに依存しているので良くないよね
     }
 }
